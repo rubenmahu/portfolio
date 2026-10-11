@@ -1,6 +1,6 @@
 import profileData from "../../content/profile.json";
 import stackData from "../../content/stack.json";
-import type { Profile, Stack } from "@/types/content";
+import type { Profile, Stack } from "@/types/content.type";
 
 const profile: Profile = profileData;
 const stack: Stack = stackData;
