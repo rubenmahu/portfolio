@@ -26,7 +26,11 @@ Mi portfolio personal. El plan, las etapas, las decisiones y el estado viven en 
 
 - `npm run lint`: ESLint.
 - `npm run build`: compila y comprueba tipos.
-- Añade aquí los de tests y formato cuando existan.
+- `npm run test`: Vitest, una sola pasada (también para hooks y CI).
+- `npm run test:watch`: Vitest en modo vigilancia.
+- `npm run format`: Prettier, reescribe los archivos.
+- `npm run format:check`: Prettier, solo comprueba.
+- Antes de dar un paso por cerrado: `lint`, `test`, `format:check` y `build`.
 
 ## Idioma
 
