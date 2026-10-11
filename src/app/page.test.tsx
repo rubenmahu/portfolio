@@ -2,13 +2,10 @@ import { render, screen } from "@testing-library/react";
 import { expect, test } from "vitest";
 import Home from "./page";
 
-test("renders the home heading", () => {
-  render(<Home />);
+test("renders the home heading", async () => {
+  render(await Home());
 
   expect(
-    screen.getByRole("heading", {
-      level: 1,
-      name: /frontend con angular y react/i,
-    }),
+    screen.getByRole("heading", { level: 1, name: /rubén maestro/i }),
   ).toBeDefined();
 });

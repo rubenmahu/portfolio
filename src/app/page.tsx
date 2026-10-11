@@ -1,17 +1,13 @@
+import Hero from "@/components/sections/Hero/Hero";
+import { getProfile } from "@/lib/content";
 import styles from "./page.module.css";
 
-function Home() {
+async function Home() {
+  const profile = await getProfile();
+
   return (
     <main className={styles.page}>
-      <section className={styles.block}>
-        <h1 className={styles.title}>
-          Rubén Maestro, frontend con Angular y React.
-        </h1>
-        <p className={styles.lead}>
-          Aprendo a trabajar con agentes de IA y lo aplico construyendo este
-          sitio.
-        </p>
-      </section>
+      <Hero profile={profile} />
     </main>
   );
 }
