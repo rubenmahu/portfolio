@@ -22,6 +22,25 @@ Mi portfolio personal. El plan, las etapas, las decisiones y el estado viven en 
 - Despliegue: Vercel. Repo público con licencia MIT; el contenido personal no se reutiliza.
 - Accesibilidad WCAG AA y diseño responsive.
 
+## Estructura
+
+```
+content/                 # datos en JSON (fuente única)
+src/
+  app/                   # rutas de Next: page.tsx, layout.tsx, globals.css
+  components/
+    sections/<Seccion>/  # una sección de la web: Seccion.tsx, .module.css y .test.tsx
+    ui/<Componente>/     # piezas reutilizables del estilo C (bloque, etiqueta...)
+  lib/                   # acceso a datos y utilidades (content.ts)
+  types/                 # tipos (content.type.ts)
+```
+
+- Cada carpeta se crea cuando hace falta, no antes.
+- `ui` no importa de `sections`. `sections` puede usar `ui`, `lib` y `types`.
+- Sin archivos barrel (`index.ts`).
+- Los tipos van en `src/types/` con el sufijo `.type.ts` (`content.type.ts`), solo con `interface` y `export type`, y se importan con `import type`.
+- Los datos se leen solo con `getProfile()` y `getStack()` de `src/lib/content.ts`; los componentes no importan los JSON.
+
 ## Comandos
 
 - `npm run lint`: ESLint.

@@ -1,0 +1,78 @@
+{
+  "groups": [
+    {
+      "id": "frameworks",
+      "name": "Frameworks",
+      "items": [
+        { "id": "angular", "name": "Angular" },
+        { "id": "angularjs", "name": "AngularJS" },
+        { "id": "react", "name": "React" },
+        { "id": "jquery", "name": "jQuery" }
+      ]
+    },
+    {
+      "id": "languages",
+      "name": "Lenguajes y estilos",
+      "items": [
+        { "id": "typescript", "name": "TypeScript" },
+        { "id": "javascript", "name": "JavaScript" },
+        { "id": "css", "name": "CSS" },
+        { "id": "scss", "name": "SCSS" }
+      ]
+    },
+    {
+      "id": "frontend-ecosystem",
+      "name": "Ecosistema front",
+      "items": [
+        { "id": "rxjs", "name": "RxJS" },
+        { "id": "primeng", "name": "PrimeNG" },
+        { "id": "ngx-translate", "name": "ngx-translate" },
+        { "id": "chartjs", "name": "Chart.js" },
+        { "id": "echarts", "name": "ECharts" },
+        { "id": "ngx-charts", "name": "ngx-charts" },
+        { "id": "d3", "name": "D3" }
+      ]
+    },
+    {
+      "id": "apis",
+      "name": "APIs",
+      "items": [
+        { "id": "rest", "name": "APIs REST" },
+        { "id": "openapi", "name": "OpenAPI / Swagger" },
+        { "id": "google-apis", "name": "Google APIs" },
+        { "id": "jwt-oauth", "name": "JWT / OAuth" }
+      ]
+    },
+    {
+      "id": "frontend-quality",
+      "name": "Calidad front",
+      "items": [
+        { "id": "eslint", "name": "ESLint" },
+        { "id": "prettier", "name": "Prettier" },
+        { "id": "jest", "name": "Jest" },
+        { "id": "jasmine-karma", "name": "Jasmine / Karma" },
+        { "id": "testing-library", "name": "Testing Library" }
+      ]
+    },
+    {
+      "id": "tools",
+      "name": "Herramientas",
+      "items": [
+        { "id": "git", "name": "Git" },
+        { "id": "ai-assisted", "name": "Desarrollo asistido por IA" }
+      ]
+    },
+    {
+      "id": "backend-devops",
+      "name": "Backend y despliegue",
+      "items": [
+        { "id": "spring-boot", "name": "Spring Boot" },
+        { "id": "sql-mysql", "name": "SQL / MySQL" },
+        { "id": "docker", "name": "Docker" },
+        { "id": "azure", "name": "Azure" },
+        { "id": "gitlab-ci", "name": "GitLab CI" },
+        { "id": "azure-pipelines", "name": "Azure Pipelines" }
+      ]
+    }
+  ]
+}
