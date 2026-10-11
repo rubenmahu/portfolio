@@ -1,0 +1,15 @@
+{
+  "intro": "Si quieres hablar, escríbeme por correo o LinkedIn.",
+  "links": [
+    {
+      "id": "email",
+      "label": "Correo",
+      "href": "mailto:rmaestrohuesa@gmail.com"
+    },
+    {
+      "id": "linkedin",
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/rub%C3%A9n-maestro-huesa-ab35971b2"
+    }
+  ]
+}
