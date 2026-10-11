@@ -1,6 +1,6 @@
-import contactData from "../../content/contact.json";
-import profileData from "../../content/profile.json";
-import stackData from "../../content/stack.json";
+import contactData from "../../../content/contact.json";
+import profileData from "../../../content/profile.json";
+import stackData from "../../../content/stack.json";
 import type { Contact, Profile, Stack } from "@/types/content.type";
 
 const contact: Contact = contactData;

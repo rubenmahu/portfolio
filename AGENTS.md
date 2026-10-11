@@ -31,7 +31,7 @@ src/
   components/
     sections/<Seccion>/  # una sección de la web: Seccion.tsx, .module.css y .test.tsx
     ui/<Componente>/     # piezas reutilizables del estilo C (bloque, etiqueta...)
-  lib/                   # acceso a datos y utilidades (content.ts)
+  lib/<Modulo>/          # lógica sin UI, una carpeta por módulo (content, metadata)
   types/                 # tipos (content.type.ts)
 ```
 
@@ -40,7 +40,7 @@ src/
 - Sin archivos barrel (`index.ts`).
 - Los tipos usan el sufijo `.type.ts` y se importan con `import type`. Los compartidos van en `src/types/` (`content.type.ts`); los de un solo componente van en su carpeta (`Block/Block.type.ts`).
 - Las listas de valores fijos (como los tonos de `Block`) se declaran como objeto `as const` en un `.type.ts`, junto al tipo que se deriva de él, y se importan sin `type` porque también son un valor. No se usan strings sueltos ni `enum`.
-- Los datos se leen solo con `getProfile()` y `getStack()` de `src/lib/content.ts`; los componentes no importan los JSON.
+- Los datos se leen solo con `getProfile()` y `getStack()` de `src/lib/content/content.ts`; los componentes no importan los JSON.
 
 ## Comandos
 
