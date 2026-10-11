@@ -1,13 +1,15 @@
 import Hero from "@/components/sections/Hero/Hero";
-import { getProfile } from "@/lib/content";
+import Stack from "@/components/sections/Stack/Stack";
+import { getProfile, getStack } from "@/lib/content";
 import styles from "./page.module.css";
 
 async function Home() {
-  const profile = await getProfile();
+  const [profile, stack] = await Promise.all([getProfile(), getStack()]);
 
   return (
     <main className={styles.page}>
       <Hero profile={profile} />
+      <Stack stack={stack} />
     </main>
   );
 }

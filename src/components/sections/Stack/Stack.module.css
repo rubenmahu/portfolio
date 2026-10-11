@@ -1,0 +1,42 @@
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.title {
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  gap: 28px;
+}
+
+.groupTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+}
+
+.item {
+  padding: 4px 10px;
+  border: 2px solid var(--line);
+  background: var(--card);
+  color: var(--fg);
+  font-family: var(--font-head), "Segoe UI", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+}

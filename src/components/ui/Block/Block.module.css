@@ -1,0 +1,23 @@
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: clamp(20px, 4vw, 48px);
+  border: var(--border-w) solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.card {
+  background: var(--card);
+  color: var(--fg);
+}
+
+.olive {
+  background: var(--olive);
+  color: var(--on-olive);
+}
+
+.accent {
+  background: var(--accent);
+  color: var(--on-accent);
+}

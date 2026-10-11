@@ -1,13 +1,6 @@
-.block {
-  display: flex;
+.hero {
   width: 100%;
   max-width: 44rem;
-  flex-direction: column;
-  gap: 20px;
-  padding: clamp(20px, 4vw, 48px);
-  border: var(--border-w) solid var(--line);
-  background: var(--card);
-  box-shadow: var(--shadow);
   animation: drop 0.5s cubic-bezier(0.3, 1.4, 0.5, 1) backwards;
 }
 
