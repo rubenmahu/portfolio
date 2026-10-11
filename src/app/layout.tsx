@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Familjen_Grotesk, Literata } from "next/font/google";
+import { getProfile } from "@/lib/content/content";
+import { buildMetadata } from "@/lib/metadata/metadata";
 import "./globals.css";
 
 const familjenGrotesk = Familjen_Grotesk({
@@ -12,11 +14,9 @@ const literata = Literata({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Rubén Maestro | Desarrollador frontend",
-  description:
-    "Portfolio de Rubén Maestro: frontend con Angular y React, y aprendizaje de desarrollo con agentes de IA.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return buildMetadata(await getProfile());
+}
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (

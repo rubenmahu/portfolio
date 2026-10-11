@@ -3,6 +3,8 @@ interface Profile {
   role: string;
   headline: string;
   intro: string;
+  description: string;
+  siteUrl: string;
 }
 
 interface StackItem {

@@ -9,6 +9,13 @@ describe("getProfile", () => {
     expect(profile.role).not.toBe("");
     expect(profile.headline).not.toBe("");
     expect(profile.intro).not.toBe("");
+    expect(profile.description).not.toBe("");
+  });
+
+  test("uses an https site URL", async () => {
+    const { siteUrl } = await getProfile();
+
+    expect(siteUrl).toMatch(/^https:\/\//);
   });
 });
 
