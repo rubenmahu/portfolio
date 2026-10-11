@@ -20,4 +20,15 @@ interface Stack {
   groups: StackGroup[];
 }
 
-export type { Profile, Stack, StackGroup, StackItem };
+interface ContactLink {
+  id: string;
+  label: string;
+  href: string;
+}
+
+interface Contact {
+  intro: string;
+  links: ContactLink[];
+}
+
+export type { Contact, ContactLink, Profile, Stack, StackGroup, StackItem };

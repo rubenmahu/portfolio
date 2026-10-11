@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { getProfile, getStack } from "./content";
+import { getContact, getProfile, getStack } from "./content";
 
 describe("getProfile", () => {
   test("returns the profile fields filled in", async () => {
@@ -30,5 +30,28 @@ describe("getStack", () => {
 
     expect(new Set(groupIds).size).toBe(groupIds.length);
     expect(new Set(itemIds).size).toBe(itemIds.length);
+  });
+});
+
+describe("getContact", () => {
+  test("returns an intro and at least one link with label and href", async () => {
+    const { intro, links } = await getContact();
+
+    expect(intro).not.toBe("");
+    expect(links.length).toBeGreaterThan(0);
+    for (const link of links) {
+      expect(link.label).not.toBe("");
+      expect(link.href).not.toBe("");
+    }
+  });
+
+  test("uses unique ids and hrefs with a protocol", async () => {
+    const { links } = await getContact();
+    const ids = links.map((link) => link.id);
+
+    expect(new Set(ids).size).toBe(ids.length);
+    for (const link of links) {
+      expect(link.href).toMatch(/^(https:\/\/|mailto:)/);
+    }
   });
 });

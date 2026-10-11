@@ -1,7 +1,9 @@
+import contactData from "../../content/contact.json";
 import profileData from "../../content/profile.json";
 import stackData from "../../content/stack.json";
-import type { Profile, Stack } from "@/types/content.type";
+import type { Contact, Profile, Stack } from "@/types/content.type";
 
+const contact: Contact = contactData;
 const profile: Profile = profileData;
 const stack: Stack = stackData;
 
@@ -13,4 +15,8 @@ async function getStack(): Promise<Stack> {
   return stack;
 }
 
-export { getProfile, getStack };
+async function getContact(): Promise<Contact> {
+  return contact;
+}
+
+export { getContact, getProfile, getStack };
