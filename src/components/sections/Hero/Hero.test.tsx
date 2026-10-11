@@ -8,6 +8,8 @@ const profile: Profile = {
   role: "Desarrollador frontend",
   headline: "Titular de prueba.",
   intro: "Presentación de prueba.",
+  description: "Descripción de prueba.",
+  siteUrl: "https://ejemplo.com",
 };
 
 test("renders the name as the main heading with headline and intro", () => {
