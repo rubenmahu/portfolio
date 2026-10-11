@@ -32,6 +32,10 @@ Mi portfolio personal. El plan, las etapas, las decisiones y el estado viven en 
 - `npm run format:check`: Prettier, solo comprueba.
 - Antes de dar un paso por cerrado: `lint`, `test`, `format:check` y `build`.
 
+## Código
+
+- Componentes React: se declaran como `function Nombre() {}` y el `export` va al final del archivo (`export default Nombre;`), no en la declaración.
+
 ## Idioma
 
 - Código, nombres, commits (Conventional Commits) y ramas: inglés.

@@ -6,6 +6,9 @@ test("renders the home heading", () => {
   render(<Home />);
 
   expect(
-    screen.getByRole("heading", { level: 1, name: /to get started/i }),
+    screen.getByRole("heading", {
+      level: 1,
+      name: /frontend con angular y react/i,
+    }),
   ).toBeDefined();
 });
