@@ -38,7 +38,8 @@ src/
 - Cada carpeta se crea cuando hace falta, no antes.
 - `ui` no importa de `sections`. `sections` puede usar `ui`, `lib` y `types`.
 - Sin archivos barrel (`index.ts`).
-- Los tipos van en `src/types/` con el sufijo `.type.ts` (`content.type.ts`), solo con `interface` y `export type`, y se importan con `import type`.
+- Los tipos usan el sufijo `.type.ts` y se importan con `import type`. Los compartidos van en `src/types/` (`content.type.ts`); los de un solo componente van en su carpeta (`Block/Block.type.ts`).
+- Las listas de valores fijos (como los tonos de `Block`) se declaran como objeto `as const` en un `.type.ts`, junto al tipo que se deriva de él, y se importan sin `type` porque también son un valor. No se usan strings sueltos ni `enum`.
 - Los datos se leen solo con `getProfile()` y `getStack()` de `src/lib/content.ts`; los componentes no importan los JSON.
 
 ## Comandos
