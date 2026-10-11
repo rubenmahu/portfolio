@@ -1,6 +1,9 @@
 .page {
-  display: grid;
-  min-height: 100svh;
-  align-items: center;
+  display: flex;
+  width: 100%;
+  max-width: 72rem;
+  flex-direction: column;
+  gap: clamp(40px, 8vw, 96px);
+  margin-inline: auto;
   padding: clamp(20px, 5vw, 56px);
 }
