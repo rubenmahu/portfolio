@@ -45,12 +45,21 @@ src/
 ## Comandos
 
 - `npm run lint`: ESLint.
+- `npm run typecheck`: TypeScript sin emitir (`tsc --noEmit`).
 - `npm run build`: compila y comprueba tipos.
 - `npm run test`: Vitest, una sola pasada (también para hooks y CI).
 - `npm run test:watch`: Vitest en modo vigilancia.
 - `npm run format`: Prettier, reescribe los archivos.
 - `npm run format:check`: Prettier, solo comprueba.
-- Antes de dar un paso por cerrado: `lint`, `test`, `format:check` y `build`.
+- `npm run check`: `lint`, `typecheck`, `test` y `format:check`, sin `build`. Lo ejecuta el hook `pre-push` de Git y CI.
+
+## Definición de hecho
+
+- Al terminar un desarrollo, ejecuta `npm run check` y `npm run build` y arregla lo que falle antes de dar el paso por cerrado. El `build` no está en los hooks de Git; lo comprueban CI y Vercel en el PR.
+- Cada sección o componente nuevo lleva su `.test.tsx` junto a él, igual que Hero, Stack y Contact.
+- Los tests consultan por rol y nombre accesible (Testing Library), no por clases ni por texto suelto.
+- Si el cambio es visual, compruébalo con Playwright a 375 px y a escritorio, en claro y en oscuro.
+- Los commits siguen Conventional Commits en inglés; `commitlint` rechaza los que no.
 
 ## Código
 
