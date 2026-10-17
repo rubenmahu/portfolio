@@ -55,7 +55,7 @@ src/
 
 ## Definición de hecho
 
-- Al terminar un desarrollo, ejecuta `npm run check` y `npm run build` y arregla lo que falle. Un hook de Claude Code (`.claude/hooks/build-gate.mjs`) ejecuta el build antes de `git commit`, `git push` y `gh pr create`, y bloquea el comando si falla; se salta si nada ha cambiado desde el último build correcto.
+- Al terminar un desarrollo, ejecuta `npm run check` y `npm run build` y arregla lo que falle antes de dar el paso por cerrado. El `build` no está en los hooks de Git; lo comprueban CI y Vercel en el PR.
 - Cada sección o componente nuevo lleva su `.test.tsx` junto a él, igual que Hero, Stack y Contact.
 - Los tests consultan por rol y nombre accesible (Testing Library), no por clases ni por texto suelto.
 - Si el cambio es visual, compruébalo con Playwright a 375 px y a escritorio, en claro y en oscuro.
