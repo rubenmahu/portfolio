@@ -2,14 +2,15 @@ import { render, screen } from "@testing-library/react";
 import { expect, test } from "vitest";
 import Home from "./page";
 
-test("renders the home heading and the stack and contact sections", async () => {
+test("renders the navigation and the home, knowledge and contact sections", async () => {
   render(await Home());
 
+  expect(screen.getByRole("navigation", { name: "Principal" })).toBeDefined();
   expect(
     screen.getByRole("heading", { level: 1, name: /rubén maestro/i }),
   ).toBeDefined();
   expect(
-    screen.getByRole("heading", { level: 2, name: "Stack" }),
+    screen.getByRole("heading", { level: 2, name: "Conocimientos" }),
   ).toBeDefined();
   expect(
     screen.getByRole("heading", { level: 2, name: "Contacto" }),

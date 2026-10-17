@@ -7,3 +7,15 @@
   margin-inline: auto;
   padding: clamp(20px, 5vw, 56px);
 }
+
+@media (min-width: 701px) {
+  .page {
+    padding-right: calc(clamp(20px, 5vw, 56px) + 4rem);
+  }
+}
+
+@media (max-width: 700px) {
+  .page {
+    padding-bottom: 6rem;
+  }
+}

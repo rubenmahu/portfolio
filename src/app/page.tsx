@@ -1,5 +1,6 @@
 import Contact from "@/components/sections/Contact/Contact";
 import Hero from "@/components/sections/Hero/Hero";
+import Nav from "@/components/sections/Nav/Nav";
 import Stack from "@/components/sections/Stack/Stack";
 import { getContact, getProfile, getStack } from "@/lib/content/content";
 import styles from "./page.module.css";
@@ -12,11 +13,14 @@ async function Home() {
   ]);
 
   return (
-    <main className={styles.page}>
-      <Hero profile={profile} />
-      <Stack stack={stack} />
-      <Contact contact={contact} />
-    </main>
+    <>
+      <Nav />
+      <main className={styles.page}>
+        <Hero profile={profile} />
+        <Stack stack={stack} />
+        <Contact contact={contact} />
+      </main>
+    </>
   );
 }
 
