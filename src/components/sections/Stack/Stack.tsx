@@ -1,6 +1,7 @@
 import Block from "@/components/ui/Block/Block";
 import { BlockTone } from "@/components/ui/Block/Block.type";
 import type { Stack as StackData } from "@/types/content.type";
+import { SectionId } from "@/types/section.type";
 import styles from "./Stack.module.css";
 
 interface StackProps {
@@ -11,9 +12,13 @@ const GROUP_TONES = [BlockTone.Card, BlockTone.Olive];
 
 function Stack({ stack }: StackProps) {
   return (
-    <section className={styles.stack} aria-labelledby="stack-title">
+    <section
+      id={SectionId.Knowledge}
+      className={styles.stack}
+      aria-labelledby="stack-title"
+    >
       <h2 id="stack-title" className={styles.title}>
-        Stack
+        Conocimientos
       </h2>
       <div className={styles.grid}>
         {stack.groups.map((group, index) => (

@@ -1,6 +1,7 @@
 import Block from "@/components/ui/Block/Block";
 import { BlockTone } from "@/components/ui/Block/Block.type";
 import type { Contact as ContactData } from "@/types/content.type";
+import { SectionId } from "@/types/section.type";
 import styles from "./Contact.module.css";
 
 interface ContactProps {
@@ -9,7 +10,11 @@ interface ContactProps {
 
 function Contact({ contact }: ContactProps) {
   return (
-    <section className={styles.contact} aria-labelledby="contact-title">
+    <section
+      id={SectionId.Contact}
+      className={styles.contact}
+      aria-labelledby="contact-title"
+    >
       <h2 id="contact-title" className={styles.title}>
         Contacto
       </h2>

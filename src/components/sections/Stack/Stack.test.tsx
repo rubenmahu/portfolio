@@ -25,7 +25,7 @@ test("renders the section title, a heading per group and its items", () => {
   render(<Stack stack={stack} />);
 
   expect(
-    screen.getByRole("heading", { level: 2, name: "Stack" }),
+    screen.getByRole("heading", { level: 2, name: "Conocimientos" }),
   ).toBeDefined();
   expect(
     screen.getByRole("heading", { level: 3, name: "Grupo uno" }),

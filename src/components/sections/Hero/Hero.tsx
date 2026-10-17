@@ -1,5 +1,6 @@
 import Block from "@/components/ui/Block/Block";
 import type { Profile } from "@/types/content.type";
+import { SectionId } from "@/types/section.type";
 import styles from "./Hero.module.css";
 
 interface HeroProps {
@@ -8,7 +9,11 @@ interface HeroProps {
 
 function Hero({ profile }: HeroProps) {
   return (
-    <section className={styles.hero} aria-labelledby="hero-title">
+    <section
+      id={SectionId.Home}
+      className={styles.hero}
+      aria-labelledby="hero-title"
+    >
       <Block>
         <h1 id="hero-title" className={styles.title}>
           {profile.name}
