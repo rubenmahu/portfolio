@@ -16,6 +16,6 @@
 
 @media (max-width: 700px) {
   .page {
-    padding-bottom: 6rem;
+    padding-bottom: calc(6rem + env(safe-area-inset-bottom));
   }
 }

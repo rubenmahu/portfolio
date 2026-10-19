@@ -1,5 +1,4 @@
 import Block from "@/components/ui/Block/Block";
-import { BlockTone } from "@/components/ui/Block/Block.type";
 import type { Contact as ContactData } from "@/types/content.type";
 import { SectionId } from "@/types/section.type";
 import styles from "./Contact.module.css";
@@ -18,7 +17,7 @@ function Contact({ contact }: ContactProps) {
       <h2 id="contact-title" className={styles.title}>
         Contacto
       </h2>
-      <Block tone={BlockTone.Olive}>
+      <Block>
         <p className={styles.intro}>{contact.intro}</p>
         <ul className={styles.links}>
           {contact.links.map((link) => {

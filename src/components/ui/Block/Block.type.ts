@@ -1,6 +1,6 @@
 const BlockTone = {
   Card: "card",
-  Olive: "olive",
+  Highlight: "highlight",
   Accent: "accent",
 } as const;
 
