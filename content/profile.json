@@ -1,8 +1,8 @@
 {
   "name": "Rubén Maestro",
-  "role": "Desarrollador frontend",
-  "headline": "Frontend con Angular y React.",
-  "intro": "Desarrollo interfaces con Angular y React e integro APIs.",
-  "description": "Portfolio de Rubén Maestro, desarrollador frontend con Angular y React. Desarrollo interfaces e integro APIs.",
+  "role": "Ingeniero front-end",
+  "headline": "Ingeniero front-end.",
+  "intro": "Construyo webs rápidas, accesibles y mantenibles.",
+  "description": "Portfolio de Rubén Maestro, ingeniero front-end. Construyo webs rápidas, accesibles y mantenibles.",
   "siteUrl": "https://rubenmh.vercel.app"
 }
