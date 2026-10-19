@@ -1,32 +1,18 @@
 :root {
-  --bg: #dccdaa;
-  --fg: #2e2a25;
-  --card: #f2ebda;
-  --olive: #5b6b3a;
-  --on-olive: #f2ebda;
-  --accent: #2f3bff;
-  --on-accent: #f2ebda;
-  --line: #2e2a25;
+  --bg: #0b1220;
+  --fg: #dbe7ff;
+  --card: #111a2e;
+  --highlight: #7aa2f7;
+  --on-highlight: #0b1220;
+  --accent: #7dcfff;
+  --on-accent: #0b1220;
+  --line: #5b7fd6;
+  --shadow-color: #1e2a4a;
 
   --border-w: 3px;
-  --shadow: 5px 5px 0 var(--line);
-}
+  --shadow: 5px 5px 0 var(--shadow-color);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #2a2620;
-    --fg: #ede3cb;
-    --card: #3a352c;
-    --olive: #8a9a5e;
-    --on-olive: #1e1b17;
-    --accent: #8c95ff;
-    --on-accent: #1e1b17;
-    --line: #ede3cb;
-  }
-
-  html {
-    color-scheme: dark;
-  }
+  color-scheme: dark;
 }
 
 *,
@@ -44,6 +30,27 @@ html {
 
 section[id] {
   scroll-margin-top: 2rem;
+}
+
+body::before {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  background-image:
+    radial-gradient(
+      50rem 28rem at 25% 0%,
+      rgb(122 162 247 / 0.18),
+      transparent
+    ),
+    linear-gradient(rgb(122 162 247 / 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(122 162 247 / 0.08) 1px, transparent 1px);
+  background-size:
+    auto,
+    48px 48px,
+    48px 48px;
+  content: "";
+  mask-image: linear-gradient(to bottom, #000 30%, transparent 95%);
+  pointer-events: none;
 }
 
 body {

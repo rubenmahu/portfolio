@@ -10,7 +10,7 @@ test("renders its children", () => {
 });
 
 test("applies the class of the given tone", () => {
-  render(<Block tone={BlockTone.Olive}>Contenido</Block>);
+  render(<Block tone={BlockTone.Highlight}>Contenido</Block>);
 
-  expect(screen.getByText("Contenido").className).toContain("olive");
+  expect(screen.getByText("Contenido").className).toContain("highlight");
 });

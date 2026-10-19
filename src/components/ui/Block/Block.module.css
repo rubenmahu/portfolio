@@ -12,12 +12,14 @@
   color: var(--fg);
 }
 
-.olive {
-  background: var(--olive);
-  color: var(--on-olive);
+.highlight {
+  border-color: var(--fg);
+  background: var(--highlight);
+  color: var(--on-highlight);
 }
 
 .accent {
+  border-color: var(--fg);
   background: var(--accent);
   color: var(--on-accent);
 }

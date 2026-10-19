@@ -11,10 +11,45 @@
   line-height: 1.05;
 }
 
+.title::before {
+  margin-right: 0.4em;
+  color: var(--highlight);
+  content: ">";
+  content: ">" / "";
+}
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
   gap: 28px;
+}
+
+/* The last group takes the rest of its row instead of leaving a gap. */
+@media (min-width: 40rem) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 64rem) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid > :last-child:nth-child(odd) {
+    grid-column: auto;
+  }
+
+  .grid > :last-child:nth-child(3n + 1) {
+    grid-column: 1 / -1;
+  }
+
+  .grid > :last-child:nth-child(3n + 2) {
+    grid-column: span 2;
+  }
 }
 
 .groupTitle {

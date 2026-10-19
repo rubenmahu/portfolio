@@ -24,7 +24,7 @@ function Experience({ experience }: ExperienceProps) {
           // current job and gets the highlighted tone.
           <Block
             key={job.id}
-            tone={index === 0 ? BlockTone.Olive : BlockTone.Card}
+            tone={index === 0 ? BlockTone.Accent : BlockTone.Card}
           >
             <div className={styles.job}>
               <header className={styles.header}>

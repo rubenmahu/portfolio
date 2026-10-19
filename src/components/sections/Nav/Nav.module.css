@@ -57,7 +57,7 @@
 }
 
 .link[aria-current="location"] .number {
-  color: var(--on-olive);
+  color: var(--on-highlight);
 }
 
 .label {
@@ -94,7 +94,7 @@
   top: 0;
   left: 0;
   border: var(--border-w) solid var(--line);
-  background: var(--olive);
+  background: var(--highlight);
   box-shadow: 3px 3px 0 var(--line);
   pointer-events: none;
   transition: transform 0.55s cubic-bezier(0.65, 0, 0.15, 1);
@@ -108,7 +108,7 @@
     left: 0;
     display: flex;
     justify-content: center;
-    padding: 10px 16px;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
     border-top: var(--border-w) solid var(--line);
     background: var(--bg);
     transform: none;
@@ -146,7 +146,7 @@
   }
 
   .link[aria-current="location"] {
-    color: var(--on-olive);
+    color: var(--on-highlight);
   }
 
   .link[aria-current="location"] .label,
@@ -160,8 +160,19 @@
   }
 }
 
+/* On narrow screens only the current section shows its name. */
 @media (max-width: 560px) {
   .label {
     display: none;
+  }
+
+  .link[aria-current="location"] .label {
+    display: block;
+  }
+
+  .marker {
+    transition:
+      transform 0.55s cubic-bezier(0.65, 0, 0.15, 1),
+      width 0.55s cubic-bezier(0.65, 0, 0.15, 1);
   }
 }

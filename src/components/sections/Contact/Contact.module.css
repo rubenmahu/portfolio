@@ -12,6 +12,13 @@
   line-height: 1.05;
 }
 
+.title::before {
+  margin-right: 0.4em;
+  color: var(--highlight);
+  content: ">";
+  content: ">" / "";
+}
+
 .intro {
   max-width: 56ch;
   font-size: 1.05rem;
@@ -41,8 +48,4 @@
 .link:hover {
   background: var(--fg);
   color: var(--card);
-}
-
-.link:focus-visible {
-  outline-color: var(--on-olive);
 }

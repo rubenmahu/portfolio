@@ -11,6 +11,13 @@
   line-height: 1.05;
 }
 
+.title::before {
+  margin-right: 0.4em;
+  color: var(--highlight);
+  content: ">";
+  content: ">" / "";
+}
+
 .jobs {
   display: flex;
   flex-direction: column;

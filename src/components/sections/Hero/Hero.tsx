@@ -1,4 +1,5 @@
 import Block from "@/components/ui/Block/Block";
+import { BlockTone } from "@/components/ui/Block/Block.type";
 import type { Profile } from "@/types/content.type";
 import { SectionId } from "@/types/section.type";
 import styles from "./Hero.module.css";
@@ -14,7 +15,10 @@ function Hero({ profile }: HeroProps) {
       className={styles.hero}
       aria-labelledby="hero-title"
     >
-      <Block>
+      <Block tone={BlockTone.Highlight}>
+        <p className={styles.prompt} aria-hidden="true">
+          $ whoami
+        </p>
         <h1 id="hero-title" className={styles.title}>
           {profile.name}
         </h1>
