@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { expect, test } from "vitest";
 import Home from "./page";
 
-test("renders the navigation and the home, knowledge and contact sections", async () => {
+test("renders the navigation and the home, knowledge, experience and contact sections", async () => {
   render(await Home());
 
   expect(screen.getByRole("navigation", { name: "Principal" })).toBeDefined();
@@ -11,6 +11,12 @@ test("renders the navigation and the home, knowledge and contact sections", asyn
   ).toBeDefined();
   expect(
     screen.getByRole("heading", { level: 2, name: "Conocimientos" }),
+  ).toBeDefined();
+  expect(
+    screen.getByRole("heading", { level: 2, name: "Experiencia" }),
+  ).toBeDefined();
+  expect(
+    screen.getByRole("heading", { level: 2, name: "Experiencia" }),
   ).toBeDefined();
   expect(
     screen.getByRole("heading", { level: 2, name: "Contacto" }),

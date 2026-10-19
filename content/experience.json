@@ -1,0 +1,36 @@
+{
+  "jobs": [
+    {
+      "id": "nter",
+      "company": "Nter",
+      "role": "Desarrollador front-end",
+      "period": "Enero 2024 - actualidad",
+      "highlights": [
+        "Aplicación web nueva para un cliente, en Angular 18: arquitectura del proyecto, módulos y componentes reutilizables a partir de los diseños de Figma, y estado con Signals y RxJS.",
+        "Evolución de dos aplicaciones de gestión de expedientes y activos, en un equipo de 4 personas, con Angular y .NET. Permisos por componente y despliegues con pipelines CI/CD en Azure.",
+        "Librería de componentes y sistema de diseño de una herramienta interna, en un equipo de hasta 15 personas, con mejoras de accesibilidad y modo oscuro."
+      ]
+    },
+    {
+      "id": "caf-dds",
+      "company": "CAF DDS",
+      "role": "Ingeniero de sistemas",
+      "period": "Julio 2022 - enero 2024",
+      "highlights": [
+        "Software del sistema de control y monitorización de trenes (TCMS) en proyectos nacionales e internacionales.",
+        "Comunicación entre los equipos a bordo, gestión de requisitos con DOORS y trato directo con el cliente."
+      ]
+    },
+    {
+      "id": "isr",
+      "company": "ISR",
+      "role": "Ingeniero de sistemas",
+      "period": "Septiembre 2020 - julio 2022",
+      "highlights": [
+        "Programación de autómatas (Siemens, Beckhoff), robots (ABB, Fanuc) y sistemas electromecánicos.",
+        "Visión por computador en Java para control de calidad.",
+        "Project manager en proyectos de automatización."
+      ]
+    }
+  ]
+}

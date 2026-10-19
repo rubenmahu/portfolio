@@ -1,9 +1,11 @@
 import contactData from "../../../content/contact.json";
+import experienceData from "../../../content/experience.json";
 import profileData from "../../../content/profile.json";
 import stackData from "../../../content/stack.json";
-import type { Contact, Profile, Stack } from "@/types/content.type";
+import type { Contact, Experience, Profile, Stack } from "@/types/content.type";
 
 const contact: Contact = contactData;
+const experience: Experience = experienceData;
 const profile: Profile = profileData;
 const stack: Stack = stackData;
 
@@ -19,4 +21,8 @@ async function getContact(): Promise<Contact> {
   return contact;
 }
 
-export { getContact, getProfile, getStack };
+async function getExperience(): Promise<Experience> {
+  return experience;
+}
+
+export { getContact, getExperience, getProfile, getStack };

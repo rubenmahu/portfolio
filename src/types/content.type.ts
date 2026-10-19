@@ -22,6 +22,18 @@ interface Stack {
   groups: StackGroup[];
 }
 
+interface Job {
+  id: string;
+  company: string;
+  role: string;
+  period: string;
+  highlights: string[];
+}
+
+interface Experience {
+  jobs: Job[];
+}
+
 interface ContactLink {
   id: string;
   label: string;
@@ -33,4 +45,13 @@ interface Contact {
   links: ContactLink[];
 }
 
-export type { Contact, ContactLink, Profile, Stack, StackGroup, StackItem };
+export type {
+  Contact,
+  ContactLink,
+  Experience,
+  Job,
+  Profile,
+  Stack,
+  StackGroup,
+  StackItem,
+};

@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { getContact, getProfile, getStack } from "./content";
+import { getContact, getExperience, getProfile, getStack } from "./content";
 
 describe("getProfile", () => {
   test("returns the profile fields filled in", async () => {
@@ -37,6 +37,27 @@ describe("getStack", () => {
 
     expect(new Set(groupIds).size).toBe(groupIds.length);
     expect(new Set(itemIds).size).toBe(itemIds.length);
+  });
+});
+
+describe("getExperience", () => {
+  test("returns at least one job and every job is filled in", async () => {
+    const { jobs } = await getExperience();
+
+    expect(jobs.length).toBeGreaterThan(0);
+    for (const job of jobs) {
+      expect(job.company).not.toBe("");
+      expect(job.role).not.toBe("");
+      expect(job.period).not.toBe("");
+      expect(job.highlights.length).toBeGreaterThan(0);
+    }
+  });
+
+  test("uses unique ids", async () => {
+    const { jobs } = await getExperience();
+    const ids = jobs.map((job) => job.id);
+
+    expect(new Set(ids).size).toBe(ids.length);
   });
 });
 
