@@ -3,7 +3,12 @@ import { afterEach, beforeEach, expect, test, vi } from "vitest";
 import Nav from "./Nav";
 
 const DOCUMENT_HEIGHT = 2000;
-const SECTION_TOPS = { inicio: 0, conocimientos: 400, contacto: 1700 };
+const SECTION_TOPS = {
+  inicio: 0,
+  conocimientos: 400,
+  experiencia: 1100,
+  contacto: 1700,
+};
 
 beforeEach(() => {
   vi.spyOn(document.documentElement, "scrollHeight", "get").mockReturnValue(
@@ -21,6 +26,8 @@ function renderNav() {
       <Nav />
       <section id="inicio" />
       <section id="conocimientos" />
+      <section id="experiencia" />
+      <section id="experiencia" />
       <section id="contacto" />
     </>,
   );
@@ -59,6 +66,12 @@ test("renders a link to each section", () => {
     screen.getByRole("link", { name: "Conocimientos" }).getAttribute("href"),
   ).toBe("#conocimientos");
   expect(
+    screen.getByRole("link", { name: "Experiencia" }).getAttribute("href"),
+  ).toBe("#experiencia");
+  expect(
+    screen.getByRole("link", { name: "Experiencia" }).getAttribute("href"),
+  ).toBe("#experiencia");
+  expect(
     screen.getByRole("link", { name: "Contacto" }).getAttribute("href"),
   ).toBe("#contacto");
 });
@@ -76,8 +89,11 @@ test("follows the sections while scrolling down and back up", () => {
   scrollTo(bottom / 2);
   expect(currentLabel()).toBe("02Conocimientos");
 
+  scrollTo(bottom * 0.75);
+  expect(currentLabel()).toBe("03Experiencia");
+
   scrollTo(bottom);
-  expect(currentLabel()).toBe("03Contacto");
+  expect(currentLabel()).toBe("04Contacto");
 
   scrollTo(bottom / 2);
   expect(currentLabel()).toBe("02Conocimientos");
@@ -86,12 +102,30 @@ test("follows the sections while scrolling down and back up", () => {
   expect(currentLabel()).toBe("01Inicio");
 });
 
+test("keeps a clicked section active until the person scrolls by hand", () => {
+  renderNav();
+  const bottom = DOCUMENT_HEIGHT - window.innerHeight;
+
+  // Near the end of the page the reference line is low, so the section below
+  // the clicked one would win by position.
+  scrollTo(bottom);
+  fireEvent.click(screen.getByRole("link", { name: "Experiencia" }));
+  scrollTo(bottom);
+
+  expect(currentLabel()).toBe("03Experiencia");
+
+  fireEvent.wheel(window);
+  scrollTo(bottom);
+
+  expect(currentLabel()).toBe("04Contacto");
+});
+
 test("reaches the last section even when it is short", () => {
   renderNav();
 
   scrollTo(DOCUMENT_HEIGHT - window.innerHeight);
 
-  expect(currentLabel()).toBe("03Contacto");
+  expect(currentLabel()).toBe("04Contacto");
 });
 
 test("stops listening to scroll when it unmounts", () => {

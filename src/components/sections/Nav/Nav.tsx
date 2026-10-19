@@ -7,18 +7,30 @@ import styles from "./Nav.module.css";
 const NAV_ITEMS = [
   { id: SectionId.Home, label: "Inicio" },
   { id: SectionId.Knowledge, label: "Conocimientos" },
+  { id: SectionId.Experience, label: "Experiencia" },
   { id: SectionId.Contact, label: "Contacto" },
 ];
 
+// Events that mean the person is scrolling by hand, not following a click.
+const MANUAL_SCROLL_EVENTS = ["wheel", "touchstart", "keydown", "pointerdown"];
+
 function Nav() {
   const [activeId, setActiveId] = useState<SectionId>(SectionId.Home);
+  const clickedIdRef = useRef<SectionId | null>(null);
   const listRef = useRef<HTMLOListElement>(null);
   const markerRef = useRef<HTMLSpanElement>(null);
 
+  function selectSection(id: SectionId) {
+    clickedIdRef.current = id;
+    setActiveId(id);
+  }
+
   useEffect(() => {
-    // The reference line moves from the top of the viewport (page start) to
-    // its bottom (page end), so short sections at the end can become active.
     function updateActive() {
+      if (clickedIdRef.current) {
+        return;
+      }
+
       const maxScroll =
         document.documentElement.scrollHeight - window.innerHeight;
       const progress =
@@ -37,14 +49,24 @@ function Nav() {
       setActiveId(current);
     }
 
+    function releaseClicked() {
+      clickedIdRef.current = null;
+    }
+
     const frame = requestAnimationFrame(updateActive);
     window.addEventListener("scroll", updateActive, { passive: true });
     window.addEventListener("resize", updateActive);
+    for (const type of MANUAL_SCROLL_EVENTS) {
+      window.addEventListener(type, releaseClicked, { passive: true });
+    }
 
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener("scroll", updateActive);
       window.removeEventListener("resize", updateActive);
+      for (const type of MANUAL_SCROLL_EVENTS) {
+        window.removeEventListener(type, releaseClicked);
+      }
     };
   }, []);
 
@@ -78,6 +100,7 @@ function Nav() {
               <a
                 className={styles.link}
                 href={`#${id}`}
+                onClick={() => selectSection(id)}
                 aria-current={id === activeId ? "location" : undefined}
               >
                 <span className={styles.number} aria-hidden="true">
