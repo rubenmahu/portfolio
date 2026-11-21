@@ -7,31 +7,32 @@ interface Profile {
   siteUrl: string;
 }
 
-interface StackItem {
+interface Commit {
+  hash: string;
+  message: string;
+  // Missing while it is not written.
+  description?: string;
+  tags: string[];
+}
+
+interface Chapter {
   id: string;
-  name: string;
+  number: string;
+  label: string;
+  // Git branch of the stage and its short name in the branch bar.
+  branch: string;
+  slug: string;
+  period?: string;
+  title: string;
+  company?: string;
+  role?: string;
+  // Missing while it is not written.
+  summary?: string;
+  commits: Commit[];
 }
 
-interface StackGroup {
-  id: string;
-  name: string;
-  items: StackItem[];
-}
-
-interface Stack {
-  groups: StackGroup[];
-}
-
-interface Job {
-  id: string;
-  company: string;
-  role: string;
-  period: string;
-  highlights: string[];
-}
-
-interface Experience {
-  jobs: Job[];
+interface Journey {
+  chapters: Chapter[];
 }
 
 interface ContactLink {
@@ -41,17 +42,7 @@ interface ContactLink {
 }
 
 interface Contact {
-  intro: string;
   links: ContactLink[];
 }
 
-export type {
-  Contact,
-  ContactLink,
-  Experience,
-  Job,
-  Profile,
-  Stack,
-  StackGroup,
-  StackItem,
-};
+export type { Chapter, Commit, Contact, ContactLink, Journey, Profile };

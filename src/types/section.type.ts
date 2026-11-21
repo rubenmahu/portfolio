@@ -1,7 +1,6 @@
 const SectionId = {
   Home: "inicio",
-  Knowledge: "conocimientos",
-  Experience: "experiencia",
+  Journey: "viaje",
   Contact: "contacto",
 } as const;
 

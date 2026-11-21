@@ -1,5 +1,4 @@
 {
-  "intro": "Si quieres hablar, escríbeme por correo o LinkedIn.",
   "links": [
     {
       "id": "email",
@@ -10,6 +9,11 @@
       "id": "linkedin",
       "label": "LinkedIn",
       "href": "https://www.linkedin.com/in/rub%C3%A9n-maestro-huesa-ab35971b2"
+    },
+    {
+      "id": "github",
+      "label": "GitHub",
+      "href": "https://github.com/rubenmahu"
     }
   ]
 }

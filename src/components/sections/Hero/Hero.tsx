@@ -1,5 +1,4 @@
-import Block from "@/components/ui/Block/Block";
-import { BlockTone } from "@/components/ui/Block/Block.type";
+import Image from "next/image";
 import type { Profile } from "@/types/content.type";
 import { SectionId } from "@/types/section.type";
 import styles from "./Hero.module.css";
@@ -15,16 +14,31 @@ function Hero({ profile }: HeroProps) {
       className={styles.hero}
       aria-labelledby="hero-title"
     >
-      <Block tone={BlockTone.Highlight}>
-        <p className={styles.prompt} aria-hidden="true">
-          $ whoami
+      <div className={styles.text}>
+        <p className={styles.prompt} aria-hidden="true" data-stack>
+          $ whoami <span className={styles.cursor} />
         </p>
-        <h1 id="hero-title" className={styles.title}>
+        <h1 id="hero-title" className={styles.title} data-stack>
           {profile.name}
         </h1>
-        <p className={styles.headline}>{profile.headline}</p>
-        <p className={styles.intro}>{profile.intro}</p>
-      </Block>
+        <p className={styles.lead} data-stack>
+          {profile.headline} {profile.intro}
+        </p>
+        <a className={styles.start} href={`#${SectionId.Journey}`} data-stack>
+          El viaje empieza aquí
+        </a>
+      </div>
+      <Image
+        className={styles.photo}
+        src="/ruben-recorte.webp"
+        width={639}
+        height={838}
+        sizes="(max-width: 760px) 280px, 400px"
+        loading="eager"
+        fetchPriority="high"
+        alt={`Retrato de ${profile.name}`}
+        data-stack
+      />
     </section>
   );
 }

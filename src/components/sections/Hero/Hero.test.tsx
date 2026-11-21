@@ -12,12 +12,34 @@ const profile: Profile = {
   siteUrl: "https://ejemplo.com",
 };
 
-test("renders the name as the main heading with headline and intro", () => {
+test("renders the full name as the main heading", () => {
   render(<Hero profile={profile} />);
 
   expect(
     screen.getByRole("heading", { level: 1, name: "Nombre Apellido" }),
   ).toBeDefined();
-  expect(screen.getByText("Titular de prueba.")).toBeDefined();
-  expect(screen.getByText("Presentación de prueba.")).toBeDefined();
+});
+
+test("renders the headline and the intro", () => {
+  render(<Hero profile={profile} />);
+
+  expect(
+    screen.getByText("Titular de prueba. Presentación de prueba."),
+  ).toBeDefined();
+});
+
+test("links to the start of the journey", () => {
+  render(<Hero profile={profile} />);
+
+  const link = screen.getByRole("link", { name: /El viaje empieza aquí/ });
+
+  expect(link.getAttribute("href")).toMatch(/^#/);
+});
+
+test("shows the portrait with an accessible name", () => {
+  render(<Hero profile={profile} />);
+
+  expect(
+    screen.getByRole("img", { name: "Retrato de Nombre Apellido" }),
+  ).toBeDefined();
 });

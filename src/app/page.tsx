@@ -1,33 +1,27 @@
 import Contact from "@/components/sections/Contact/Contact";
-import Experience from "@/components/sections/Experience/Experience";
+import Footer from "@/components/sections/Footer/Footer";
 import Hero from "@/components/sections/Hero/Hero";
-import Nav from "@/components/sections/Nav/Nav";
-import Stack from "@/components/sections/Stack/Stack";
-import {
-  getContact,
-  getExperience,
-  getProfile,
-  getStack,
-} from "@/lib/content/content";
+import Journey from "@/components/sections/Journey/Journey";
+import RevealOnScroll from "@/components/ui/RevealOnScroll/RevealOnScroll";
+import { getContact, getJourney, getProfile } from "@/lib/content/content";
 import styles from "./page.module.css";
 
 async function Home() {
-  const [profile, stack, experience, contact] = await Promise.all([
+  const [profile, journey, contact] = await Promise.all([
     getProfile(),
-    getStack(),
-    getExperience(),
+    getJourney(),
     getContact(),
   ]);
 
   return (
     <>
-      <Nav />
+      <RevealOnScroll />
+      <Contact contact={contact} />
       <main className={styles.page}>
         <Hero profile={profile} />
-        <Stack stack={stack} />
-        <Experience experience={experience} />
-        <Contact contact={contact} />
+        <Journey journey={journey} />
       </main>
+      <Footer profile={profile} />
     </>
   );
 }

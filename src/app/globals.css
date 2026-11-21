@@ -1,18 +1,47 @@
 :root {
-  --bg: #0b1220;
-  --fg: #dbe7ff;
-  --card: #111a2e;
-  --highlight: #7aa2f7;
-  --on-highlight: #0b1220;
-  --accent: #7dcfff;
-  --on-accent: #0b1220;
-  --line: #5b7fd6;
-  --shadow-color: #1e2a4a;
+  /* Cool paper and ink. --fg-muted is 5.4:1 on --bg (WCAG AA). */
+  --bg: #f3f4f2;
+  --fg: #16181d;
+  --fg-secondary: #454a52;
+  --fg-muted: #5c616a;
+  --surface: #eaecea;
+  --surface-strong: #e2e5e2;
+  --card: #fff;
 
-  --border-w: 3px;
-  --shadow: 5px 5px 0 var(--shadow-color);
+  --origin: #7c3aed;
+  --robotics: #f2b705;
+  --robotics-text: #8a6a00;
+  --trains: #e4572e;
+  /* The red is 3.3:1 as text on --bg; this darker one is 4.6:1. */
+  --trains-text: #c2410c;
+  --web: #2f5bea;
 
-  color-scheme: dark;
+  --accent: var(--web);
+  --on-accent: #fff;
+  --line: rgb(22 24 29 / 0.16);
+
+  color-scheme: light;
+}
+
+/* Color of each stage of the journey; text is the one used over --bg. */
+[data-stage="origin"] {
+  --stage: var(--origin);
+  --stage-text: var(--origin);
+}
+
+[data-stage="robotics"] {
+  --stage: var(--robotics);
+  --stage-text: var(--robotics-text);
+}
+
+[data-stage="trains"] {
+  --stage: var(--trains);
+  --stage-text: var(--trains-text);
+}
+
+[data-stage="web"] {
+  --stage: var(--web);
+  --stage-text: var(--web);
 }
 
 *,
@@ -32,33 +61,12 @@ section[id] {
   scroll-margin-top: 2rem;
 }
 
-body::before {
-  position: fixed;
-  z-index: -1;
-  inset: 0;
-  background-image:
-    radial-gradient(
-      50rem 28rem at 25% 0%,
-      rgb(122 162 247 / 0.18),
-      transparent
-    ),
-    linear-gradient(rgb(122 162 247 / 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(122 162 247 / 0.08) 1px, transparent 1px);
-  background-size:
-    auto,
-    48px 48px,
-    48px 48px;
-  content: "";
-  mask-image: linear-gradient(to bottom, #000 30%, transparent 95%);
-  pointer-events: none;
-}
-
 body {
   min-height: 100%;
   color: var(--fg);
   background: var(--bg);
-  font-family: var(--font-body), Georgia, serif;
-  line-height: 1.55;
+  font-family: var(--font-body), "Segoe UI", sans-serif;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -83,12 +91,53 @@ a {
   outline-offset: 3px;
 }
 
+/*
+ * Blocks that stack up: each one drops from above with a small bounce and
+ * settles. data-stack plays when the page loads; data-reveal waits until the
+ * block enters the screen (RevealOnScroll marks it as data-visible). With
+ * reduced motion they only fade in, with no movement at all.
+ */
+@keyframes stack-in {
+  from {
+    opacity: 0;
+    transform: translateY(-36px) scale(0.97);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+[data-stack] {
+  animation: stack-in 0.7s cubic-bezier(0.3, 1.4, 0.5, 1) backwards;
+}
+
+/* The blocks are only hidden once RevealOnScroll is mounted, so without
+   JavaScript the page stays fully visible. */
+html[data-reveal-ready] [data-reveal]:not([data-visible]) {
+  opacity: 0;
+}
+
+[data-reveal][data-visible] {
+  animation: stack-in 0.7s cubic-bezier(0.3, 1.4, 0.5, 1) backwards;
+}
+
+/*
+ * Reduced motion means less movement, not no feedback: the same blocks fade in
+ * quickly and the transitions that only change color or opacity stay. Anything
+ * that moves (dropping, sliding, lifting, blinking, smooth scroll) is removed.
+ */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-stack],
+  [data-reveal][data-visible] {
+    animation-name: fade-in;
+    animation-duration: 0.5s;
+    animation-timing-function: ease;
   }
 }

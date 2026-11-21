@@ -1,17 +1,23 @@
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono, Literata } from "next/font/google";
-import Spotlight from "@/components/ui/Spotlight/Spotlight";
+import { Bricolage_Grotesque, Inter, JetBrains_Mono } from "next/font/google";
 import { getProfile } from "@/lib/content/content";
 import { buildMetadata } from "@/lib/metadata/metadata";
 import "./globals.css";
 
-const jetBrainsMono = JetBrains_Mono({
+const bricolageGrotesque = Bricolage_Grotesque({
   variable: "--font-head",
+  subsets: ["latin"],
+  // Optical size: the big titles use the display cut of the font.
+  axes: ["opsz"],
+});
+
+const inter = Inter({
+  variable: "--font-body",
   subsets: ["latin"],
 });
 
-const literata = Literata({
-  variable: "--font-body",
+const jetBrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
 });
 
@@ -28,12 +34,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="es"
-      className={`${jetBrainsMono.variable} ${literata.variable}`}
+      className={`${bricolageGrotesque.variable} ${inter.variable} ${jetBrainsMono.variable}`}
     >
-      <body>
-        <Spotlight />
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

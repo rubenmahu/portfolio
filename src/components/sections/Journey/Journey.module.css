@@ -1,0 +1,98 @@
+/*
+ * Two ways of showing the journey:
+ * - Flow (default): the graph in the left column and the stages one after the
+ *   other next to it.
+ * - Pinned (wide and tall screens, with motion allowed): the whole journey stays
+ *   in the screen and the scroll slides the stages sideways, like a gallery.
+ *   Journey.tsx sets the height of the section and the movement of the strip.
+ */
+.journey {
+  --graph-width: 3.5rem;
+
+  width: 100%;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.pin {
+  display: grid;
+  column-gap: clamp(12px, 3vw, 40px);
+  grid-template-columns: var(--graph-width) minmax(0, 1fr);
+}
+
+.viewport {
+  min-width: 0;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(64px, 8vw, 112px);
+}
+
+.slide {
+  min-width: 0;
+  scroll-margin-top: 24px;
+}
+
+/* Docked on the left while the stages go by; as tall as the screen. */
+.dock {
+  position: sticky;
+  top: 16px;
+  height: calc(100dvh - 32px);
+  align-self: start;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+@media (min-width: 761px) {
+  .journey {
+    --graph-width: 12.5rem;
+  }
+}
+
+@media (min-width: 1300px) and (min-height: 640px) and (prefers-reduced-motion: no-preference) {
+  .pin {
+    position: sticky;
+    top: 0;
+    height: 100dvh;
+    box-sizing: border-box;
+    padding-block: 24px;
+  }
+
+  .dock {
+    position: static;
+    height: 100%;
+  }
+
+  /* The strip is as wide as all the stages together; each one takes the width
+     of the screen and the viewport only shows one at a time. */
+  .viewport {
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+  }
+
+  .panel {
+    flex: none;
+    flex-direction: row;
+    max-height: 100%;
+    gap: 0;
+    will-change: transform;
+  }
+
+  .slide {
+    max-height: 100%;
+    overflow-y: auto;
+    flex: 1 1 0;
+  }
+}
