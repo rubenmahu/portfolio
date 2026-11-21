@@ -25,6 +25,8 @@ const PINNED_QUERY =
 // Extra scroll, as a percentage of the screen, that keeps the last stage still
 // before the journey is released.
 const END_HOLD = 30;
+// The origin lives in main and has no dates: the graph shows this instead.
+const ORIGIN_PERIOD = "El origen";
 
 // The origin lives in main, the last stage is the branch that is still open
 // and the ones in between have been merged.
@@ -180,6 +182,7 @@ function Journey({ journey }: JourneyProps) {
     id: chapter.id,
     number: chapter.number,
     slug: chapter.slug,
+    period: chapter.period ?? ORIGIN_PERIOD,
     kind: getKind(chapter, index === chapters.length - 1),
     commits: chapter.commits.length,
   }));

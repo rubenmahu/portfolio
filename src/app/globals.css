@@ -4,19 +4,22 @@
   --fg: #16181d;
   --fg-secondary: #454a52;
   --fg-muted: #5c616a;
-  --surface: #eaecea;
   --surface-strong: #e2e5e2;
   --card: #fff;
 
-  --origin: #7c3aed;
-  --robotics: #f2b705;
-  --robotics-text: #8a6a00;
-  --trains: #e4572e;
-  /* The red is 3.3:1 as text on --bg; this darker one is 4.6:1. */
-  --trains-text: #c2410c;
-  --web: #2f5bea;
+  /* Each stage has a color for lines and dots and a darker one for text, which
+     is between 5.4:1 and 5.8:1 on --bg (WCAG AA). */
+  --origin: #966cd7;
+  --origin-text: #714ca6;
+  --robotics: #af7c00;
+  --robotics-text: #845b00;
+  --trains: #d45c36;
+  --trains-text: #a33f1e;
+  --web: #4e82e5;
+  --web-text: #345fb2;
 
-  --accent: var(--web);
+  /* White on --web-text is 6.1:1; on --web it would only be 3.7:1. */
+  --accent: var(--web-text);
   --on-accent: #fff;
   --line: rgb(22 24 29 / 0.16);
 
@@ -26,7 +29,7 @@
 /* Color of each stage of the journey; text is the one used over --bg. */
 [data-stage="origin"] {
   --stage: var(--origin);
-  --stage-text: var(--origin);
+  --stage-text: var(--origin-text);
 }
 
 [data-stage="robotics"] {
@@ -41,7 +44,7 @@
 
 [data-stage="web"] {
   --stage: var(--web);
-  --stage-text: var(--web);
+  --stage-text: var(--web-text);
 }
 
 *,

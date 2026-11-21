@@ -9,4 +9,14 @@ const BranchGraphKind = {
 
 type BranchGraphKind = (typeof BranchGraphKind)[keyof typeof BranchGraphKind];
 
-export { BranchGraphKind };
+// Where each branch is in the reading: before, on or after the active one.
+const BranchGraphState = {
+  Passed: "passed",
+  Active: "active",
+  Pending: "pending",
+} as const;
+
+type BranchGraphState =
+  (typeof BranchGraphState)[keyof typeof BranchGraphState];
+
+export { BranchGraphKind, BranchGraphState };

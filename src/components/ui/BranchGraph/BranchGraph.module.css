@@ -1,21 +1,23 @@
 /*
- * Vertical graph, like a git log: main runs down the left and each branch
- * leaves it to the right, goes down parallel to it and merges back. One
- * segment per stage, all of the same height. The curves are boxes with two
- * borders and one rounded corner. The branch of the active stage takes its
- * color (--stage); the others stay muted.
+ * Vertical graph, like a git log, drawn straight on the page: main runs down
+ * the left and each branch leaves it to the right with a soft curve, goes down
+ * parallel to it and merges back. One segment per stage, all of the same
+ * height. Every branch keeps its color (--stage); its state (data-state) only
+ * changes how strong it is. Main is in ink up to the end of the active stage
+ * and light after it.
  */
 .graph {
-  --ink: #2a2c33;
-  --line-w: 3px;
-  --radius: 18px;
+  --ink: var(--fg);
+  --line-w: 2px;
   --main-x: 16px;
-  --branch-x: 56px;
-  --tick: 14px;
+  --branch-x: 44px;
+  --label-x: 64px;
+  --curve: 28px;
+  --spacing: min(34px, 16%);
+  --dot: 10px;
+  --ring: 3px;
 
   height: 100%;
-  border-radius: 12px;
-  background: var(--surface);
 }
 
 .list {
@@ -25,11 +27,15 @@
   list-style: none;
 }
 
+/* The branch leaves main at --start and merges at --end, as percentages of
+   the segment; the commits and the label sit around --center. */
 .segment {
-  --branch: var(--fg-muted);
+  --start: 4%;
+  --end: 88%;
+  --center: calc((var(--start) + var(--end)) / 2);
 
   position: relative;
-  min-height: 0;
+  min-height: 44px;
   flex: 1;
 }
 
@@ -41,7 +47,12 @@
   border: 0;
   border-radius: 8px;
   background: transparent;
+  color: var(--fg);
   cursor: pointer;
+}
+
+.hit:focus-visible {
+  outline-offset: -3px;
 }
 
 .art {
@@ -50,165 +61,217 @@
   pointer-events: none;
 }
 
-.segment[data-active] {
-  --branch: var(--stage);
-}
-
+/* The stretch of main along this stage. */
 .main {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: var(--main-x);
+  left: calc(var(--main-x) - var(--line-w) / 2);
   width: var(--line-w);
+  background: color-mix(in srgb, var(--ink) 14%, var(--bg));
+  transition: background-color 0.4s;
+}
+
+.segment:is([data-state="passed"], [data-state="active"]) .main {
   background: var(--ink);
 }
 
-.fork,
-.join,
-.line,
-.openLine,
-.commit,
-.mainCommit,
-.merge,
-.head {
+@media (prefers-reduced-motion: reduce) {
+  .main {
+    transition: none;
+  }
+}
+
+.branch {
   position: absolute;
-  opacity: 0.4;
-  transition:
-    opacity 0.4s,
-    border-color 0.4s,
-    background-color 0.4s;
+  inset: 0;
+  transition: opacity 0.4s;
 }
 
-.segment[data-active]
-  :is(.fork, .join, .line, .openLine, .commit, .mainCommit, .merge, .head) {
-  opacity: 1;
+.segment[data-state="passed"] .branch {
+  opacity: 0.5;
 }
 
-/* From main to the right, then down along the branch. */
-.fork {
-  top: 12%;
-  left: var(--main-x);
-  width: calc(var(--branch-x) - var(--main-x) + var(--line-w));
-  height: var(--radius);
-  border-top: var(--line-w) solid var(--branch);
-  border-right: var(--line-w) solid var(--branch);
-  border-top-right-radius: var(--radius);
+.segment[data-state="pending"] .branch {
+  opacity: 0.35;
 }
 
-/* Down along the branch, then left into main. */
-.join {
-  bottom: 12%;
-  left: var(--main-x);
-  width: calc(var(--branch-x) - var(--main-x) + var(--line-w));
-  height: var(--radius);
-  border-right: var(--line-w) solid var(--branch);
-  border-bottom: var(--line-w) solid var(--branch);
-  border-bottom-right-radius: var(--radius);
-}
-
-.line,
-.openLine {
-  top: calc(12% + var(--radius));
-  left: var(--branch-x);
-  width: var(--line-w);
-  background: var(--branch);
-}
-
-.line {
-  bottom: calc(12% + var(--radius));
-}
-
-/* Leaves room for the HEAD label at the end. */
-.openLine {
-  bottom: 2.4rem;
-}
-
-/* A commit is a short tick that sticks out of the line to the right. */
-.commit,
-.mainCommit {
-  width: var(--tick);
-  height: calc(var(--line-w) + 1px);
-  border-radius: 1px;
-  background: var(--branch);
-  transform: translateY(-50%);
-}
-
-.commit {
-  left: var(--branch-x);
-}
-
-.mainCommit {
-  left: var(--main-x);
-}
-
-.merge {
-  bottom: calc(12% + var(--line-w) / 2);
-  left: calc(var(--main-x) + var(--line-w) / 2);
-  width: 14px;
-  height: 14px;
-  border: var(--line-w) solid var(--ink);
-  background: var(--card);
-  transform: translate(-50%, 50%) rotate(45deg);
-}
-
-.segment[data-active] .merge {
-  background: var(--branch);
-}
-
-/* Hovering a branch that is not the active one lights it up a bit. */
-.segment:not([data-active]):hover
-  :is(.fork, .join, .line, .openLine, .commit, .mainCommit, .merge, .head) {
+.segment:not([data-active]):hover .branch {
   opacity: 0.8;
 }
 
-.segment:not([data-active]):hover .label {
-  color: var(--fg-secondary);
+.fork,
+.join {
+  position: absolute;
+  left: var(--main-x);
+  width: calc(var(--branch-x) - var(--main-x));
+  height: var(--curve);
+  overflow: visible;
+  fill: none;
+  stroke: var(--stage);
+  stroke-width: var(--line-w);
 }
 
+.fork {
+  top: var(--start);
+}
+
+.join {
+  top: calc(var(--end) - var(--curve));
+}
+
+.line,
+.tail {
+  position: absolute;
+  left: calc(var(--branch-x) - var(--line-w) / 2);
+  width: var(--line-w);
+}
+
+.line {
+  top: calc(var(--start) + var(--curve));
+  bottom: calc(100% - var(--end) + var(--curve));
+  background: var(--stage);
+}
+
+/* The open branch keeps going after its last commit. */
+.tail {
+  bottom: 0;
+  background: linear-gradient(var(--stage) 50%, transparent 0) top / 100% 6px
+    repeat-y;
+}
+
+/* A ring of the page color cuts the line around each commit. */
+.commit {
+  position: absolute;
+  left: var(--branch-x);
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: 50%;
+  background: var(--stage);
+  box-shadow: 0 0 0 var(--ring) var(--bg);
+  transform: translate(-50%, -50%);
+}
+
+.segment[data-kind="main"] .commit {
+  left: var(--main-x);
+}
+
+.segment[data-state="pending"] .commit {
+  border: 1.5px solid var(--stage);
+  background: var(--bg);
+}
+
+/* In ink, like main, up to the active stage; light after it. */
+.merge {
+  position: absolute;
+  top: var(--end);
+  left: var(--main-x);
+  width: 12px;
+  height: 12px;
+  border: 2px solid color-mix(in srgb, var(--ink) 35%, var(--bg));
+  border-radius: 50%;
+  background: var(--bg);
+  transform: translate(-50%, -50%);
+  transition: border-color 0.4s;
+}
+
+.segment:is([data-state="passed"], [data-state="active"]) .merge {
+  border-color: var(--ink);
+}
+
+/* Under the last commit, on the dotted line: away from the label whatever the
+   height of the segment. */
 .head {
-  bottom: 0.5rem;
-  left: calc(var(--branch-x) + var(--line-w) / 2);
-  padding: 2px 8px;
+  position: absolute;
+  left: var(--branch-x);
+  padding: 1px 6px;
   border-radius: 4px;
-  background: var(--branch);
+  background: var(--stage-text);
   color: #fff;
   font-family: var(--font-mono), monospace;
-  font-size: 0.7rem;
-  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+  transform: translate(-50%, 11px);
 }
 
 .label {
   position: absolute;
-  top: 50%;
-  left: calc(var(--branch-x) + 20px);
-  color: var(--fg-muted);
-  font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  top: var(--center);
+  right: 0;
+  left: calc(var(--label-x) - 10px);
+  display: flex;
+  flex-direction: column;
+  padding: 6px 10px;
+  border-radius: 8px;
+  line-height: 1.4;
   transform: translateY(-50%);
+  transition: background-color 0.4s;
+}
+
+.segment[data-active] .label {
+  background: color-mix(in srgb, var(--stage) 12%, var(--bg));
+}
+
+.number {
+  display: none;
+}
+
+.name {
+  color: var(--fg-secondary);
+  font-family: var(--font-mono), monospace;
+  font-size: 13px;
   transition: color 0.4s;
   white-space: nowrap;
 }
 
-.segment[data-active] .label {
+.segment[data-active] .name {
+  color: var(--stage-text);
+  font-weight: 600;
+}
+
+.segment:not([data-active]):hover .name {
   color: var(--fg);
-  font-weight: 700;
+}
+
+.period {
+  color: var(--fg-muted);
+  font-family: var(--font-body), sans-serif;
+  font-size: 12px;
+  white-space: nowrap;
 }
 
 /* Narrow screens: a thinner column that only shows the stage number. */
 @media (max-width: 760px) {
   .graph {
-    --radius: 10px;
     --main-x: 8px;
     --branch-x: 26px;
-    --tick: 9px;
+    --curve: 18px;
+    --spacing: min(24px, 14%);
   }
 
-  .slug {
+  .label,
+  .segment[data-active] .label {
+    left: calc(var(--branch-x) + 10px);
+    padding: 0;
+    background: transparent;
+  }
+
+  .number {
+    display: block;
+    color: var(--fg-muted);
+    font-family: var(--font-mono), monospace;
+    font-size: 11px;
+  }
+
+  .segment[data-active] .number {
+    color: var(--stage-text);
+    font-weight: 600;
+  }
+
+  .name,
+  .period {
     display: none;
-  }
-
-  .label {
-    left: calc(var(--branch-x) + 12px);
   }
 
   .head {
