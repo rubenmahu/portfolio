@@ -10,7 +10,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 # Reglas del proyecto
 
-Mi portfolio personal. El plan, las etapas, las decisiones y el estado viven en el Tablero "Tareas personales" de Notion (una tarjeta por etapa). Consúltalo solo si te lo pido; al cerrar un paso, actualiza la tarjeta de su etapa.
+Mi portfolio personal.
 
 ## Stack
 
@@ -30,7 +30,7 @@ src/
   app/                   # rutas de Next: page.tsx, layout.tsx, globals.css
   components/
     sections/<Seccion>/  # una sección de la web: Seccion.tsx, .module.css y .test.tsx
-    ui/<Componente>/     # piezas reutilizables del estilo C (bloque, etiqueta...)
+    ui/<Componente>/     # piezas reutilizables de la interfaz (bloque, etiqueta...)
   lib/<Modulo>/          # lógica sin UI, una carpeta por módulo (content, metadata)
   types/                 # tipos (content.type.ts)
 ```
@@ -40,7 +40,7 @@ src/
 - Sin archivos barrel (`index.ts`).
 - Los tipos usan el sufijo `.type.ts` y se importan con `import type`. Los compartidos van en `src/types/` (`content.type.ts`); los de un solo componente van en su carpeta (`Block/Block.type.ts`).
 - Las listas de valores fijos (como los tonos de `Block`) se declaran como objeto `as const` en un `.type.ts`, junto al tipo que se deriva de él, y se importan sin `type` porque también son un valor. No se usan strings sueltos ni `enum`.
-- Los datos se leen solo con `getProfile()` y `getStack()` de `src/lib/content/content.ts`; los componentes no importan los JSON.
+- Los datos se leen solo con las funciones `get*()` de `src/lib/content/content.ts`; los componentes no importan los JSON.
 
 ## Comandos
 
@@ -56,9 +56,9 @@ src/
 ## Definición de hecho
 
 - Al terminar un desarrollo, ejecuta `npm run check` y `npm run build` y arregla lo que falle antes de dar el paso por cerrado. El `build` no está en los hooks de Git; lo comprueban CI y Vercel en el PR.
-- Cada sección o componente nuevo lleva su `.test.tsx` junto a él, igual que Hero, Stack y Contact.
+- Cada sección o componente nuevo lleva su `.test.tsx` junto a él, igual que Hero y Contact.
 - Los tests consultan por rol y nombre accesible (Testing Library), no por clases ni por texto suelto.
-- Si el cambio es visual, compruébalo con Playwright a 375 px y a escritorio, en claro y en oscuro.
+- Si el cambio es visual, compruébalo con Playwright a 375 px y a escritorio.
 - Los commits siguen Conventional Commits en inglés; `commitlint` rechaza los que no.
 
 ## Código
@@ -81,20 +81,3 @@ src/
 ## Documentación de librerías
 
 - Antes de usar una API de Next, React, Vitest u otra librería, consulta su documentación con Context7. En Next, además, lee la guía correspondiente de `node_modules/next/dist/docs/`.
-
-## Etapas
-
-- Al empezar una etapa, lee su tarjeta en Notion (campo Contexto: skills a usar y criterio de hecho).
-- Una etapa no empieza hasta cerrar la anterior.
-- Las decisiones técnicas se anotan en la tarjeta de la etapa.
-
-## No tocar
-
-- El bloque de Next de este archivo (arriba), que regenera `next dev`.
-- `next-env.d.ts`.
-
-## Diseño
-
-- Dirección visual: estilo C, "Taller de bloques": bloques con bordes gruesos y sombra dura, paleta arena, oliva y cobalto. El mockup está en la tarjeta de la etapa 2 en Notion.
-- Respeta `prefers-reduced-motion`.
-- No instales three.js ni React Three Fiber hasta que yo lo pida.
