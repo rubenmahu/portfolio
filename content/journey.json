@@ -1,0 +1,122 @@
+{
+  "chapters": [
+    {
+      "id": "origin",
+      "number": "00",
+      "label": "Origen",
+      "branch": "main",
+      "slug": "main",
+      "title": "Todo empezó con los videojuegos",
+      "commits": [
+        {
+          "hash": "a8f12c0",
+          "message": "Los videojuegos me llevaron a la informática",
+          "tags": ["Videojuegos"]
+        },
+        {
+          "hash": "b302e11",
+          "message": "Estudié Ingeniería Electrónica",
+          "tags": ["Electrónica"]
+        },
+        {
+          "hash": "c4980a3",
+          "message": "Del analógico a la arquitectura Von Neumann",
+          "tags": ["Hardware"]
+        }
+      ]
+    },
+    {
+      "id": "robotics",
+      "number": "01",
+      "label": "Robótica",
+      "branch": "feature/robotics-isr",
+      "slug": "robotics-isr",
+      "period": "2020 – 2022",
+      "title": "Primer trabajo: programar robots",
+      "company": "ISR",
+      "role": "Ingeniero de sistemas",
+      "commits": [
+        {
+          "hash": "e41a09d",
+          "message": "Programación de autómatas, robots y sistemas electromecánicos",
+          "description": "Autómatas Siemens y Beckhoff, robots ABB y Fanuc y sistemas electromecánicos.",
+          "tags": ["PLC", "Robots", "Automatización"]
+        },
+        {
+          "hash": "8bc71f2",
+          "message": "Visión por computador en Java para control de calidad",
+          "description": "Sistema de visión por computador desarrollado en Java para el control de calidad.",
+          "tags": ["Java", "Visión por computador"]
+        },
+        {
+          "hash": "30fa981",
+          "message": "Project manager en proyectos de automatización",
+          "description": "Coordinación de proyectos de automatización.",
+          "tags": ["Gestión de proyectos"]
+        }
+      ]
+    },
+    {
+      "id": "trains",
+      "number": "02",
+      "label": "Trenes",
+      "branch": "feature/railway-caf",
+      "slug": "railway-caf",
+      "period": "2022 – 2024",
+      "title": "Después, la electrónica de los trenes",
+      "company": "CAF DDS",
+      "role": "Ingeniero de sistemas",
+      "commits": [
+        {
+          "hash": "4a81bc7",
+          "message": "Software del sistema de control y monitorización de trenes",
+          "description": "TCMS en proyectos nacionales e internacionales.",
+          "tags": ["TCMS", "Control de trenes"]
+        },
+        {
+          "hash": "f3c42a1",
+          "message": "Comunicación entre los equipos a bordo",
+          "description": "Comunicación entre los equipos del tren.",
+          "tags": ["Comunicaciones"]
+        },
+        {
+          "hash": "9d1b7a2",
+          "message": "Requisitos con DOORS y trato directo con el cliente",
+          "description": "Gestión de requisitos con DOORS y relación directa con el cliente.",
+          "tags": ["DOORS", "Requisitos"]
+        }
+      ]
+    },
+    {
+      "id": "web",
+      "number": "03",
+      "label": "Web",
+      "branch": "feature/web-development",
+      "slug": "web-development",
+      "period": "2024 – hoy",
+      "title": "Por fin, lo que me gustaba de siempre",
+      "company": "Nter",
+      "role": "Desarrollador front-end",
+      "commits": [
+        {
+          "hash": "7e221bc",
+          "message": "Aplicación web nueva en Angular 18",
+          "description": "Arquitectura del proyecto, módulos y componentes reutilizables a partir de los diseños de Figma, y estado con Signals y RxJS.",
+          "tags": ["Angular 18", "Signals", "RxJS"]
+        },
+        {
+          "hash": "c810fa5",
+          "message": "Evolución de dos aplicaciones de gestión con Angular y .NET",
+          "description": "Aplicaciones de gestión de expedientes y activos, en un equipo de 4 personas. Permisos por componente y despliegues con pipelines CI/CD en Azure.",
+          "tags": ["Angular", ".NET", "Azure"]
+        },
+        {
+          "hash": "9d45e0f",
+          "message": "Librería de componentes y sistema de diseño",
+          "description": "Herramienta interna, en un equipo de hasta 15 personas, con mejoras de accesibilidad y modo oscuro.",
+          "tags": ["Design system", "Accesibilidad"]
+        }
+      ]
+    }
+  ]
+}

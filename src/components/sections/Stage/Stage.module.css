@@ -1,0 +1,130 @@
+.stage {
+  display: grid;
+  gap: 40px;
+}
+
+.intro {
+  display: grid;
+  align-content: start;
+  gap: 20px;
+  justify-items: start;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 16px;
+}
+
+.branch {
+  color: var(--stage-text);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.9rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.period {
+  color: var(--fg-muted);
+  font-size: 0.9rem;
+}
+
+.title {
+  font-size: clamp(2.2rem, 5vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.summary {
+  max-width: 32rem;
+  color: var(--fg-secondary);
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.scene {
+  width: min(100%, 22rem);
+  height: auto;
+  margin-top: 8px;
+  object-fit: contain;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Kept for the structure of the page; the list is clear without it. */
+.heading {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.commits {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--line);
+  list-style: none;
+}
+
+/* Text on the left and the illustration on the right; the commits go below. */
+@media (min-width: 761px) {
+  .stage {
+    align-items: center;
+    column-gap: 40px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 17rem);
+  }
+
+  .intro {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .scene {
+    width: 100%;
+    margin-top: 0;
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .content {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
+
+/* Pinned journey: each stage is a compact panel that must fit in the screen,
+   with the illustration on the right of the text and the commits. */
+@media (min-width: 1300px) and (min-height: 640px) and (prefers-reduced-motion: no-preference) {
+  .stage {
+    row-gap: clamp(16px, 3dvh, 32px);
+    column-gap: 56px;
+    grid-template-columns: minmax(0, 1fr) 18rem;
+  }
+
+  .intro {
+    gap: clamp(8px, 1.6dvh, 16px);
+  }
+
+  .title {
+    font-size: clamp(2rem, 6dvh, 3.25rem);
+  }
+
+  .scene {
+    grid-row: 1 / span 2;
+  }
+
+  .content {
+    max-width: 48rem;
+    grid-column: 1;
+    grid-row: 2;
+  }
+}

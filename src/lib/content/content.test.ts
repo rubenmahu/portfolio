@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { getContact, getExperience, getProfile, getStack } from "./content";
+import { getContact, getJourney, getProfile } from "./content";
 
 describe("getProfile", () => {
   test("returns the profile fields filled in", async () => {
@@ -19,53 +19,108 @@ describe("getProfile", () => {
   });
 });
 
-describe("getStack", () => {
-  test("returns at least one group and every group has items", async () => {
-    const { groups } = await getStack();
+describe("getJourney", () => {
+  test("returns the chapters in order: origin, robotics, trains, web", async () => {
+    const { chapters } = await getJourney();
 
-    expect(groups.length).toBeGreaterThan(0);
-    for (const group of groups) {
-      expect(group.name).not.toBe("");
-      expect(group.items.length).toBeGreaterThan(0);
+    expect(chapters.map((chapter) => chapter.id)).toEqual([
+      "origin",
+      "robotics",
+      "trains",
+      "web",
+    ]);
+  });
+
+  test("every chapter is filled in", async () => {
+    const { chapters } = await getJourney();
+
+    for (const chapter of chapters) {
+      expect(chapter.number).not.toBe("");
+      expect(chapter.label).not.toBe("");
+      expect(chapter.title).not.toBe("");
+      expect(chapter.branch).not.toBe("");
+      expect(chapter.slug).not.toBe("");
+      expect(chapter.commits).toHaveLength(3);
     }
   });
 
-  test("uses unique ids across groups and items", async () => {
-    const { groups } = await getStack();
-    const groupIds = groups.map((group) => group.id);
-    const itemIds = groups.flatMap((group) => group.items.map((i) => i.id));
+  test("every commit is filled in and has a short hash", async () => {
+    const { chapters } = await getJourney();
+    const commits = chapters.flatMap((chapter) => chapter.commits);
 
-    expect(new Set(groupIds).size).toBe(groupIds.length);
-    expect(new Set(itemIds).size).toBe(itemIds.length);
+    for (const commit of commits) {
+      expect(commit.hash).toMatch(/^[0-9a-f]{7}$/);
+      expect(commit.message).not.toBe("");
+      expect(commit.tags.length).toBeGreaterThan(0);
+    }
+  });
+
+  test("uses unique commit hashes", async () => {
+    const { chapters } = await getJourney();
+    const hashes = chapters.flatMap((chapter) =>
+      chapter.commits.map((commit) => commit.hash),
+    );
+
+    expect(new Set(hashes).size).toBe(hashes.length);
+  });
+
+  test("uses unique ids and numbers", async () => {
+    const { chapters } = await getJourney();
+    const ids = chapters.map((chapter) => chapter.id);
+    const numbers = chapters.map((chapter) => chapter.number);
+    const slugs = chapters.map((chapter) => chapter.slug);
+
+    expect(new Set(ids).size).toBe(ids.length);
+    expect(new Set(numbers).size).toBe(numbers.length);
+    expect(new Set(slugs).size).toBe(slugs.length);
   });
 });
 
-describe("getExperience", () => {
-  test("returns at least one job and every job is filled in", async () => {
-    const { jobs } = await getExperience();
+// Every text of the journey that is shown. A placeholder between brackets, like
+// "[What I learned]", must never be published: leave the field out instead.
+function collectTexts(value: unknown): string[] {
+  if (typeof value === "string") {
+    return [value];
+  }
 
-    expect(jobs.length).toBeGreaterThan(0);
-    for (const job of jobs) {
-      expect(job.company).not.toBe("");
-      expect(job.role).not.toBe("");
-      expect(job.period).not.toBe("");
-      expect(job.highlights.length).toBeGreaterThan(0);
-    }
+  if (Array.isArray(value)) {
+    return value.flatMap(collectTexts);
+  }
+
+  if (value && typeof value === "object") {
+    return Object.values(value).flatMap(collectTexts);
+  }
+
+  return [];
+}
+
+describe("the content has no placeholders", () => {
+  test("the journey has no text between brackets", async () => {
+    const texts = collectTexts(await getJourney());
+
+    expect(texts.filter((text) => /[[\]]/.test(text))).toEqual([]);
   });
 
-  test("uses unique ids", async () => {
-    const { jobs } = await getExperience();
-    const ids = jobs.map((job) => job.id);
+  test("the optional texts are not empty when they are there", async () => {
+    const { chapters } = await getJourney();
 
-    expect(new Set(ids).size).toBe(ids.length);
+    for (const chapter of chapters) {
+      if (chapter.summary !== undefined) {
+        expect(chapter.summary.trim()).not.toBe("");
+      }
+      for (const commit of chapter.commits) {
+        if (commit.description !== undefined) {
+          expect(commit.description.trim()).not.toBe("");
+        }
+      }
+    }
   });
 });
 
 describe("getContact", () => {
-  test("returns an intro and at least one link with label and href", async () => {
-    const { intro, links } = await getContact();
+  test("returns at least one link with label and href", async () => {
+    const { links } = await getContact();
 
-    expect(intro).not.toBe("");
     expect(links.length).toBeGreaterThan(0);
     for (const link of links) {
       expect(link.label).not.toBe("");

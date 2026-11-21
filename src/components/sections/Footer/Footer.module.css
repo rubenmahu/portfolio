@@ -1,0 +1,26 @@
+.footer {
+  display: flex;
+  width: 100%;
+  max-width: 90rem;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 24px;
+  margin-inline: auto;
+  padding: 32px clamp(20px, 5vw, 56px) 48px;
+  border-top: 1px solid var(--line);
+}
+
+.name {
+  font-family: var(--font-head), "Segoe UI", sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.role {
+  margin-left: 0.5rem;
+  color: var(--fg-muted);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
