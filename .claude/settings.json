@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(env -u NODE_ENV npx vitest run)",
+      "Bash(env)",
+      "Bash(env -u NODE_ENV npx vitest run src/components/ui/CommitCard)",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_evaluate",
+      "mcp__playwright__browser_emulate_media",
+      "mcp__playwright__browser_run_code_unsafe"
+    ]
+  }
+}

@@ -83,7 +83,10 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 17rem);
   }
 
+  /* At the bottom of the row, next to the commits: the illustration is taller
+     than a short title and, centered, would leave a gap above the list. */
   .intro {
+    align-self: end;
     grid-column: 1;
     grid-row: 1;
   }
@@ -98,6 +101,33 @@
   .content {
     grid-column: 1 / -1;
     grid-row: 2;
+  }
+}
+
+/* Medium screens: the illustration takes the height of the title block (with a
+   minimum) instead of setting it, so it does not stick out above the title.
+   contain: size and aspect-ratio: auto stop the image from adding its own
+   height to the row; object-fit keeps the drawing in proportion. */
+@media (min-width: 761px) and (max-width: 1299px) {
+  .scene {
+    height: 100%;
+    min-height: 7.5rem;
+    align-self: stretch;
+    aspect-ratio: auto;
+    contain: size;
+  }
+}
+
+/* Wide screens: the illustration goes down beside the commits, so it does not
+   set the height of the title row and leave empty space around it. */
+@media (min-width: 1300px) {
+  .scene {
+    align-self: start;
+    grid-row: 1 / span 2;
+  }
+
+  .content {
+    grid-column: 1;
   }
 }
 
