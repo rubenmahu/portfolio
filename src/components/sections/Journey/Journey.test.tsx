@@ -69,7 +69,7 @@ function crossReadingLine(id: string, isIntersecting = true, top = 0) {
 }
 
 function getSegment(slug: string) {
-  return screen.getByText(`-${slug}`).closest("[data-stage]");
+  return screen.getByText(slug).closest("[data-stage]");
 }
 
 let pinnedMatches = false;
@@ -174,7 +174,7 @@ test("has a clickable branch for every stage", () => {
     screen
       .getAllByRole("button")
       .map((button) => button.getAttribute("aria-label")),
-  ).toEqual(["Ir a 00-origen", "Ir a 01-robotics-isr", "Ir a 02-web"]);
+  ).toEqual(["Ir a origen", "Ir a robotics-isr", "Ir a web"]);
 });
 
 test("starts with the first stage highlighted in the graph", () => {
@@ -190,7 +190,7 @@ test("starts with the first stage highlighted in the graph", () => {
 test("flow: clicking a branch scrolls smoothly to its stage", () => {
   render(<Journey journey={journey} />);
 
-  fireEvent.click(screen.getByRole("button", { name: "Ir a 01-robotics-isr" }));
+  fireEvent.click(screen.getByRole("button", { name: "Ir a robotics-isr" }));
 
   expect(scrollIntoView).toHaveBeenCalledTimes(1);
   expect(scrollIntoView).toHaveBeenCalledWith({
@@ -206,7 +206,7 @@ test("flow: scrolls without animation when the user prefers reduced motion", () 
   mockMatchMedia({ reducedMotion: true });
   render(<Journey journey={journey} />);
 
-  fireEvent.click(screen.getByRole("button", { name: "Ir a 02-web" }));
+  fireEvent.click(screen.getByRole("button", { name: "Ir a web" }));
 
   expect(scrollIntoView).toHaveBeenCalledWith({
     behavior: "auto",
@@ -380,7 +380,7 @@ test("pinned: clicking a branch scrolls the window to the scroll of its stage", 
   mockMatchMedia({ pinned: true });
   render(<Journey journey={journey} />);
 
-  fireEvent.click(screen.getByRole("button", { name: "Ir a 02-web" }));
+  fireEvent.click(screen.getByRole("button", { name: "Ir a web" }));
 
   expect(scrollTo).toHaveBeenCalledWith({
     top: 2 * window.innerHeight,

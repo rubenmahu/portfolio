@@ -20,7 +20,7 @@
         },
         {
           "hash": "c4980a3",
-          "message": "Del analógico a la arquitectura Von Neumann",
+          "message": "De la electrónica analógica a la arquitectura de von Neumann",
           "tags": ["Hardware"]
         }
       ]
@@ -39,19 +39,17 @@
         {
           "hash": "e41a09d",
           "message": "Programación de autómatas, robots y sistemas electromecánicos",
-          "description": "Autómatas Siemens y Beckhoff, robots ABB y Fanuc y sistemas electromecánicos.",
+          "description": "Autómatas Siemens y Beckhoff y robots ABB y Fanuc.",
           "tags": ["PLC", "Robots", "Automatización"]
         },
         {
           "hash": "8bc71f2",
           "message": "Visión por computador en Java para control de calidad",
-          "description": "Sistema de visión por computador desarrollado en Java para el control de calidad.",
           "tags": ["Java", "Visión por computador"]
         },
         {
           "hash": "30fa981",
-          "message": "Project manager en proyectos de automatización",
-          "description": "Coordinación de proyectos de automatización.",
+          "message": "Gestión de proyectos de automatización",
           "tags": ["Gestión de proyectos"]
         }
       ]
@@ -76,13 +74,11 @@
         {
           "hash": "f3c42a1",
           "message": "Comunicación entre los equipos a bordo",
-          "description": "Comunicación entre los equipos del tren.",
           "tags": ["Comunicaciones"]
         },
         {
           "hash": "9d1b7a2",
           "message": "Requisitos con DOORS y trato directo con el cliente",
-          "description": "Gestión de requisitos con DOORS y relación directa con el cliente.",
           "tags": ["DOORS", "Requisitos"]
         }
       ]
