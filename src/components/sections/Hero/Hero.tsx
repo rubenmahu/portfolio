@@ -16,7 +16,8 @@ function Hero({ profile }: HeroProps) {
     >
       <div className={styles.text}>
         <p className={styles.prompt} aria-hidden="true" data-stack>
-          $ whoami <span className={styles.cursor} />
+          $ <span className={styles.command}>whoami</span>{" "}
+          <span className={styles.cursor} />
         </p>
         <h1 id="hero-title" className={styles.title} data-stack>
           {profile.name}
@@ -28,17 +29,28 @@ function Hero({ profile }: HeroProps) {
           El viaje empieza aquí
         </a>
       </div>
-      <Image
-        className={styles.photo}
-        src="/ruben-recorte.webp"
-        width={639}
-        height={838}
-        sizes="(max-width: 760px) 280px, 400px"
-        loading="eager"
-        fetchPriority="high"
-        alt={`Retrato de ${profile.name}`}
-        data-stack
-      />
+      <div className={styles.portrait} data-stack>
+        <div className={styles.bar} aria-hidden="true">
+          <span className={styles.dots}>
+            <span />
+            <span />
+            <span />
+          </span>
+          ruben.webp
+        </div>
+        <div className={styles.screen}>
+          <Image
+            className={styles.photo}
+            src="/ruben-recorte.webp"
+            width={639}
+            height={838}
+            sizes="(max-width: 760px) 200px, 300px"
+            loading="eager"
+            fetchPriority="high"
+            alt={`Retrato de ${profile.name}`}
+          />
+        </div>
+      </div>
     </section>
   );
 }

@@ -6,22 +6,25 @@
       "label": "Origen",
       "branch": "main",
       "slug": "main",
-      "title": "Todo empezó con los videojuegos",
+      "title": "Fundamentos de hardware y lógica",
       "commits": [
         {
           "hash": "a8f12c0",
           "message": "Los videojuegos me llevaron a la informática",
+          "description": "Empecé a interesarme por el software porque quería entender cómo funcionan por dentro los sistemas interactivos: su arquitectura y su lógica.",
           "tags": ["Videojuegos"]
         },
         {
           "hash": "b302e11",
           "message": "Estudié Ingeniería Electrónica",
+          "description": "Me gradué en Ingeniería Electrónica para entender la tecnología desde la parte física. Ahí aprendí cómo se procesa la información, de qué depende el rendimiento del hardware y cómo se organiza un sistema.",
           "tags": ["Electrónica"]
         },
         {
-          "hash": "c4980a3",
-          "message": "De la electrónica analógica a la arquitectura de von Neumann",
-          "tags": ["Hardware"]
+          "hash": "d17e5b4",
+          "message": "Máster en Ingeniería Mecatrónica",
+          "description": "Con el máster profundicé en la electrónica y amplié lo que sabía de los sistemas mecatrónicos en general.",
+          "tags": ["Mecatrónica"]
         }
       ]
     },
@@ -32,24 +35,26 @@
       "branch": "feature/robotics-isr",
       "slug": "robotics-isr",
       "period": "2020 – 2022",
-      "title": "Primer trabajo: programar robots",
+      "title": "Automatización y visión artificial",
       "company": "ISR",
       "role": "Ingeniero de sistemas",
       "commits": [
         {
           "hash": "e41a09d",
           "message": "Programación de autómatas, robots y sistemas electromecánicos",
-          "description": "Autómatas Siemens y Beckhoff y robots ABB y Fanuc.",
+          "description": "Empecé mi carrera programando el control de autómatas Siemens y Beckhoff y de brazos robóticos ABB y Fanuc. Con maquinaria industrial pesada de por medio aprendí a escribir código preciso y seguro, que aguante los fallos.",
           "tags": ["PLC", "Robots", "Automatización"]
         },
         {
           "hash": "8bc71f2",
           "message": "Visión por computador en Java para control de calidad",
+          "description": "Hice sistemas de visión artificial en Java para el control de calidad. Procesaban datos en tiempo real para que la línea de producción tomara decisiones de forma automática.",
           "tags": ["Java", "Visión por computador"]
         },
         {
           "hash": "30fa981",
           "message": "Gestión de proyectos de automatización",
+          "description": "Coordiné proyectos de automatización: la planificación, el control del presupuesto y la validación de los requisitos técnicos en planta.",
           "tags": ["Gestión de proyectos"]
         }
       ]
@@ -61,24 +66,26 @@
       "branch": "feature/railway-caf",
       "slug": "railway-caf",
       "period": "2022 – 2024",
-      "title": "Después, la electrónica de los trenes",
+      "title": "Software crítico embarcado",
       "company": "CAF DDS",
       "role": "Ingeniero de sistemas",
       "commits": [
         {
           "hash": "4a81bc7",
           "message": "Software del sistema de control y monitorización de trenes",
-          "description": "TCMS en proyectos nacionales e internacionales.",
+          "description": "Pasé al sector ferroviario para desarrollar el sistema de control y monitorización de trenes (TCMS). Programé el diagnóstico y la monitorización en proyectos internacionales, con un nivel de exigencia técnica muy alto.",
           "tags": ["TCMS", "Control de trenes"]
         },
         {
           "hash": "f3c42a1",
           "message": "Comunicación entre los equipos a bordo",
+          "description": "Programé la integración y la comunicación entre los equipos de a bordo. En un tren, que los datos lleguen rápido y sin errores es un requisito de seguridad.",
           "tags": ["Comunicaciones"]
         },
         {
           "hash": "9d1b7a2",
           "message": "Requisitos con DOORS y trato directo con el cliente",
+          "description": "Gestioné los requisitos con DOORS y estaba en contacto continuo con el cliente para convertir necesidades de operación complejas en especificaciones de desarrollo estrictas.",
           "tags": ["DOORS", "Requisitos"]
         }
       ]
@@ -90,27 +97,27 @@
       "branch": "feature/web-development",
       "slug": "web-development",
       "period": "2024 – hoy",
-      "title": "Por fin, lo que me gustaba de siempre",
+      "title": "Desarrollador front-end",
       "company": "Nter",
       "role": "Desarrollador front-end",
       "commits": [
         {
-          "hash": "7e221bc",
-          "message": "Aplicación web nueva en Angular 18",
-          "description": "Arquitectura del proyecto, módulos y componentes reutilizables a partir de los diseños de Figma, y estado con Signals y RxJS.",
-          "tags": ["Angular 18", "Signals", "RxJS"]
-        },
-        {
           "hash": "c810fa5",
           "message": "Evolución de dos aplicaciones de gestión con Angular y .NET",
-          "description": "Aplicaciones de gestión de expedientes y activos, en un equipo de 4 personas. Permisos por componente y despliegues con pipelines CI/CD en Azure.",
+          "description": "Dos aplicaciones de gestión de expedientes y activos, en un equipo de 4 personas. Añadí módulos de consulta, edición y descarga, refactoricé el código Angular, implementé permisos por componente y desplegué con pipelines de CI/CD en Azure.",
           "tags": ["Angular", ".NET", "Azure"]
         },
         {
-          "hash": "9d45e0f",
-          "message": "Librería de componentes y sistema de diseño",
-          "description": "Herramienta interna, en un equipo de hasta 15 personas, con mejoras de accesibilidad y modo oscuro.",
-          "tags": ["Design system", "Accesibilidad"]
+          "hash": "7e221bc",
+          "message": "Aplicación web nueva en Angular 18",
+          "description": "Definí la arquitectura de una aplicación nueva y construí componentes reutilizables a partir de los diseños de Figma. Llevé módulos completos del análisis a la entrega, con el estado en Signals y RxJS y APIs REST con control de acceso por perfil. A la vez, evolucioné otra aplicación del mismo cliente.",
+          "tags": ["Angular 18", "Signals", "RxJS"]
+        },
+        {
+          "hash": "b5e93d2",
+          "message": "Plataforma para pacientes con desarrollo asistido por IA",
+          "description": "Plataforma web y móvil para que los pacientes de una clínica gestionen sus citas, en un equipo con front, back, UX, funcional y arquitectura. Participé en la forma de trabajar con agentes de IA, versionada en el repositorio, en el desarrollo guiado por ADRs y contratos OpenAPI, y en la CI que valida build, lint y tests en cada PR.",
+          "tags": ["Desarrollo con IA", "OpenAPI", "CI"]
         }
       ]
     }

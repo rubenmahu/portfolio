@@ -1,19 +1,72 @@
-/* A commit is a row of the list, not a card: hash on the left, text on the right. */
+/*
+ * A commit is a row of a git log, not a card: a line with a dot on the left
+ * (the graph), the hash, and the text on the right. The line of each row
+ * touches the next one, so together they draw a single continuous branch.
+ */
 .row {
+  --pad-y: clamp(10px, 2dvh, 20px);
+  --hash-pad: 0.3rem;
+  --graph-x: 7px;
+  --color: var(--stage, var(--fg-muted));
+
+  position: relative;
   display: grid;
   column-gap: 20px;
-  padding: clamp(10px, 2dvh, 20px) 0;
+  padding: var(--pad-y) 0 var(--pad-y) 28px;
   border-top: 1px solid var(--line);
   grid-template-columns: 5.5rem minmax(0, 1fr);
+  isolation: isolate;
+}
+
+.row::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--graph-x) - 1px);
+  width: 2px;
+  background: color-mix(in srgb, var(--color) 40%, var(--bg));
+  content: "";
+}
+
+/* Like the selected line in an editor: only a tint, the row is not a link. */
+.row::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: color-mix(in srgb, var(--color) 7%, transparent);
+  content: "";
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+@media (hover: hover) {
+  .row:hover::after {
+    opacity: 1;
+  }
 }
 
 .hash {
-  padding-top: 0.3rem;
+  padding-top: var(--hash-pad);
   color: var(--stage-text, var(--fg-muted));
   font-family: var(--font-mono), monospace;
   font-size: 0.85rem;
   font-weight: 600;
   grid-row: span 3;
+}
+
+/* The dot of the commit, at the height of the first line of the hash
+   (0.8em is half its line height of 1.6). */
+.hash::before {
+  position: absolute;
+  z-index: 1;
+  top: calc(var(--pad-y) + var(--hash-pad) + 0.8em);
+  left: var(--graph-x);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color);
+  content: "";
+  transform: translate(-50%, -50%);
 }
 
 .message,
@@ -40,23 +93,31 @@
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 2px 14px;
-  margin-top: 8px;
+  gap: 6px;
+  margin-top: 10px;
   list-style: none;
 }
 
+/* Like a GitHub label. The text is --fg-secondary, over 7:1 on the tint. */
 .tag {
-  color: var(--fg-muted);
-  font-size: 0.85rem;
+  padding: 1px 8px;
+  border: 1px solid color-mix(in srgb, var(--color) 35%, var(--bg));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color) 9%, var(--bg));
+  color: var(--fg-secondary);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  line-height: 1.6;
 }
 
 @media (max-width: 520px) {
   .row {
+    --hash-pad: 0;
+
     grid-template-columns: minmax(0, 1fr);
   }
 
   .hash {
-    padding-top: 0;
     grid-row: auto;
   }
 
